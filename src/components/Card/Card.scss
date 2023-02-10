@@ -1,0 +1,36 @@
+// Variables
+$card-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+
+
+
+.card-wrap {
+  margin: auto;
+  width: 600px; 
+}
+
+.card {
+  background-color: #ffffff;
+  margin-bottom: 48px;
+  -webkit-box-shadow: $card-shadow;
+  box-shadow: $card-shadow;
+  word-wrap: break-word;
+  margin-top: 80px;
+}
+
+.card-detail {
+	height: 8px;
+}
+
+@media (max-width: 660px) {
+  .header-accent {
+    height: 122px;
+  }
+
+  .card:first-of-type {
+    margin-top: -50px;
+  }
+
+  .card-wrap {
+    width: 90%;
+  }
+}
