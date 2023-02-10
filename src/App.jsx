@@ -165,13 +165,11 @@ const Form = () => {
               >
                 <div className="row">
                   <div className="input-field col s12">
-                    <h4>
-                      <WhatsappLogo size={37} weight="duotone" /> Whatsapp
-                      Conversor
-                    </h4>
+                    <h1>
+                      <WhatsappLogo size={37} weight="duotone" /> Conversor de Link Whatsapp
+                    </h1>
                     <p className="teal-text margin-negative">
-                      Crie mensagens personalizadas do WhatsApp e envie para
-                      quem você quiser.
+                      Crie botões e links de whataspp com mesagens pré-definidas, ou apenas crie links de whataspp a partir dos números, assim você não precisa mais adicionar um contato para iniciar uma conversa.
                     </p>
                   </div>
                 </div>

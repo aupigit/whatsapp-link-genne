@@ -21,7 +21,7 @@ const Footer = () => {
     display: "flex",
     flexDirection: "row",
     marginTop: "calc(10% + 60px)",
-    position: "fixed",
+    position: "",
     bottom: 0,
     paddingBottom: "1rem",
     height: "auto",
@@ -38,15 +38,7 @@ const Footer = () => {
         px: 2,
       }}
     >
-      <StackColumn>
-        <Box
-          component="img"
-          sx={{ height: 100 }}
-          alt="Logo Ilink"
-          src={logoILink}
-        />
-      </StackColumn>
-
+      
       <StackColumn>
         <FooterTitle text={"Aupi Tools | Aupi"} />
         <FooterLink
@@ -58,7 +50,7 @@ const Footer = () => {
         <FooterLink text={"www.aupi.com.br"} />
       </StackColumn>
 
-      <StackColumn>
+      {/* <StackColumn>
         <FooterTitle text={"Outras ferramentas"} />
         <FooterLink text={"buy house"} />
         <FooterLink text={"sell house"} />
@@ -70,7 +62,7 @@ const Footer = () => {
         <FooterLink text={"reporting"} />
         <FooterLink text={"get in touch"} />
         <FooterLink text={"management"} />
-      </StackColumn>
+      </StackColumn> */}
       <StackColumn>
         <FooterTitle text={"Conheça a Aupi"} />
         <Stack
