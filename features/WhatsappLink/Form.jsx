@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import {
-  ArrowFatDown,
-  Copy,
-  LinkBreak,
-  LinkSimpleHorizontal,
-  Swap,
-  WhatsappLogo,
-} from "phosphor-react";
+import { ArrowFatDown, HandsClapping } from "phosphor-react";
 import MaskedInput from "./MaskedInput";
 import {
+  Avatar,
   Button,
+  Chip,
   Container,
   CssBaseline,
-  Grid,
-  Input,
-  Link,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import Confetti from "./Confetti";
 import { QRCodeCanvas } from "qrcode.react";
 import {
-  LinkOffOutlined,
+  ArrowCircleDownTwoTone,
+  ArrowDownward,
+  Autorenew,
+  ContentCopy,
   LinkOutlined,
-  Send,
-  SendAndArchive,
+  WhatsApp,
 } from "@mui/icons-material";
 import { Box } from "@mui/system";
+import PageTitle from "../../components/common/PageTitle";
+import { grey, purple } from "@mui/material/colors";
 
 const Form = () => {
   const [phoneState, setPhoneState] = useState("");
@@ -64,66 +64,63 @@ const Form = () => {
 
   function renderResult(url) {
     return (
-      <div className="col s12 result-wrapper">
-        <span type="text" id="result" className="result" readOnly={!!urlState}>
-          {urlState}
-        </span>
-        <hr />
+      <Container>
+        <Chip sx={{ bgcolor: purple[800] }} label={urlState}></Chip>
         <br />
-        <div className="row">
-          <div className="col s12 m6">
+
+        <Stack direction="row" spacing={1}>
+          <Box>
             <Button
+              sx={{ mt: 3, mb: 2 }}
               className="btn waves-effect waves-light teal button-handler"
               onClick={() => {
                 copyToClipboard(urlState);
               }}
               variant="contained"
+              endIcon={<ContentCopy />}
             >
               {copyState}
-              <i className="material-icons right">
-                <Copy />
-              </i>
             </Button>
-          </div>
+          </Box>
 
-          <div className="col s12 m6">
+          <Box>
             <Button
+              sx={{ mt: 3, mb: 2 }}
               className="btn waves-effect waves-light teal button-handler"
               href={url}
               target="a_blank"
-              endIcon={<Send />}
-              variant="outlined"
+              endIcon={<WhatsApp />}
+              variant="filled"
             >
               Enviar no WhatsApp
             </Button>
-          </div>
-          <div className="col s12 m12">
-            <Button
-              className="btn waves-effect waves-light teal accent-1 teal-text button-handler"
-              onClick={() => {
-                clearAll();
-              }}
-              variant="contained"
-              endIcon={<Swap />}
-            >
-              Refazer
-            </Button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="input-field col s12">
-            <span className="white-text">
-              Ou se preferir use o QR CODE abaixo
-              <i>
-                <ArrowFatDown size={16} weight="bold" />
-              </i>
-              <br />
-              <br />
-            </span>
-            <QRCodeCanvas id="qrCode" value={urlState} size={200} level={"H"} />
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Stack>
+
+        <Button
+          sx={{ mt: 1, mb: 2 }}
+          onClick={() => {
+            clearAll();
+          }}
+          variant="contained"
+          endIcon={<Autorenew />}
+        >
+          Refazer
+        </Button>
+
+        <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+          <ListItem sx={{ mt: 2, mb: 1 }}>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: grey[400] }}>
+                <ArrowDownward />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Ou se preferir use o QR CODE abaixo" />
+          </ListItem>
+          <br />
+          <QRCodeCanvas id="qrCode" value={urlState} size={200} level={"H"} />
+        </Box>
+      </Container>
     );
   }
 
@@ -133,92 +130,107 @@ const Form = () => {
         {isSubmitting && (
           <>
             {!returnData && (
-              <div>
+              <Container component="main">
                 <Confetti />
+                <PageTitle>
+                  Parabéns <HandsClapping /> <HandsClapping />
+                </PageTitle>
+                <Typography
+                  sx={{
+                    marginTop: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                  paragraph
+                  mb={5}
+                >
+                  Agora você pode enviar esse link pra quem você quiser
+                </Typography>
+                <CssBaseline />
+                {/* <Box
+              sx={{
+                marginTop: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            > */}
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit}
+                  noValidate
+                  sx={{ mt: 1 }}
+                >
+                  {urlState ? renderResult(urlState) : ""}
 
-                <div className="form-wrap">
-                  <form
-                    onSubmit={(e) => {
-                      handleSubmit(e);
-                    }}
-                  >
-                    <div className="row">
-                      <Typography>
-                        <h2> Parabéns 🎉🎉🎉</h2>
-                        <h4>
-                          Agora você pode enviar esse link pra quem você quiser
-                        </h4>
-                      </Typography>
-                    </div>
-                    <div className="row">
-                      {urlState ? renderResult(urlState) : ""}
-                    </div>
-                  </form>
-                </div>
-              </div>
+                  {/* </Box> */}
+                </Box>
+              </Container>
             )}
           </>
         )}
 
         {!isSubmitting && (
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
+          <Container component="main">
+            <PageTitle>Whatsapp Link</PageTitle>
+            <Typography
               sx={{
-                marginTop: 8,
+                marginTop: 2,
+                display: "flex",
+                flexDirection: "column",
+              }}
+              paragraph
+              mb={5}
+            >
+              Crie botões e links de whataspp com mesagens pré-definidas, ou
+              apenas crie links de whataspp a partir dos números, assim você não
+              precisa mais adicionar um contato para iniciar uma conversa.
+            </Typography>
+            <CssBaseline />
+            {/* <Box
+              sx={{
+                marginTop: 2,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
+            > */}
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
             >
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
-                <MaskedInput
-                  id="phone"
-                  type="number"
-                  mask={"(99) 99999-9999"}
-                  name="phone"
-                  label={"Escreva seu número de telefone aqui 📱"}
-                  onChange={(e) => setPhoneState(e.target.value)}
-                  value={phoneState}
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  label="Escreva sua mensagem aqui ✍️"
-                  value={messageState}
-                  id="message"
-                  name="message"
-                  placeholder="Ex: Olá em que posso ajudar"
-                  onChange={(e) => setMessageState(e.target.value)}
-                />
+              <MaskedInput
+                id="phone"
+                type="number"
+                mask={"(99) 99999-9999"}
+                name="phone"
+                label={"Escreva seu número de telefone aqui 📱"}
+                onChange={(e) => setPhoneState(e.target.value)}
+                value={phoneState}
+              />
+              <TextField
+                margin="normal"
+                fullWidth
+                label="Escreva sua mensagem aqui ✍️"
+                value={messageState}
+                id="message"
+                name="message"
+                placeholder="Ex: Olá em que posso ajudar"
+                onChange={(e) => setMessageState(e.target.value)}
+              />
 
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  startIcon={<LinkOutlined />}
-                >
-                  Gerar Link
-                </Button>
-                {/* <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link href="#" variant="body2">
-                      {""}
-                    </Link>
-                  </Grid>
-                </Grid> */}
-              </Box>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                startIcon={<LinkOutlined />}
+              >
+                Gerar Link
+              </Button>
+              {/* </Box> */}
             </Box>
           </Container>
         )}

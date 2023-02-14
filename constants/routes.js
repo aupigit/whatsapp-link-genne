@@ -24,7 +24,7 @@ export const mainRoutes = [
     name: "Home",
     key: "home",
     icon: <HomeIcon />,
-    description: "Web dev tools.",
+    description: "Ferramentas funcionais",
   },
 ];
 
@@ -85,7 +85,7 @@ export const generateRoutes = [
   },
 
   {
-    path: "/generate/todo",
+    path: "/generate/whatsapp-link",
     name: "Whatsapp Link",
     homeName: "Gerador de Link para Whatsapp",
     key: "todo-list",

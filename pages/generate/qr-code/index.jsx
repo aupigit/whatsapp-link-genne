@@ -16,7 +16,7 @@ const QrCode = () => {
         <>
             <SEO description='Create a QR code.' title='QR Code Generator' url='/generate/qr-code' imageUrl='/qr-code.png' />
 
-            <PageTitle>QR Code Generator</PageTitle>
+            <PageTitle>Gerador de QR CODE</PageTitle>
 
             <Typography paragraph mb={5}>
                 Crie um QR code.

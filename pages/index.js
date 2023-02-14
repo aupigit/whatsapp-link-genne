@@ -42,6 +42,7 @@ const Home = () => {
         navItems={navItems}
       >
         {screen === "generate" && <CardLinks routes={generateRoutes} />}
+
       </BottomMenu>
     </>
   );
