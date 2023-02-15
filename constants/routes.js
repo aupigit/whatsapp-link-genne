@@ -90,7 +90,7 @@ export const generateRoutes = [
     homeName: "Gerador de Link para Whatsapp",
     key: "todo-list",
     icon: <WhatsappOutlined />,
-    description: "Create a Whatsapp Link.",
+    description: "Crie seu Whatsapp Link.",
   },
 ];
 

@@ -7,21 +7,21 @@ export const initialValues = {
 
 export const qrCodePickers = [
     {
-        label: 'Primary Colors',
+        label: 'Cores Primarias',
         name: 'dotColor',
-        helperText: 'Dot Color',
+        helperText: 'Cor do Ponto',
     },
     {
         name: 'backgroundColor',
-        helperText: 'Background Color',
+        helperText: 'Cor de Fundo',
     },
     {
-        label: 'Ring Colors',
+        label: 'Cores Secoundarias',
         name: 'ringOuter',
-        helperText: 'Outer Color',
+        helperText: 'Cor Externa',
     },
     {
         name: 'ringInner',
-        helperText: 'Inner Color',
+        helperText: 'Cor Interna',
     },
 ]

@@ -14,7 +14,7 @@ module.exports = (phase, { defaultConfig }) => {
                 swSrc: 'service-worker.js',
             },
             reactStrictMode: true,
-            swcMinify: true,
+            swcMinify: false,
             basePath: phase === 'phase-export' && process.env.STAGING === 'true' ? '/huffmanks/out' : '',
             // experimental: {
             //     images: {

@@ -5,10 +5,11 @@
     "scripts": {
         "dev": "next dev -p 3000",
         "build": "next build",
-        "postbuild": "next-sitemap",
         "staging": "cross-env STAGING='true' next export",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "prod": "vercel --prod",
+        "deploy": "vercel"
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
@@ -30,7 +31,8 @@
         "react-confetti": "^6.1.0",
         "react-dom": "18.2.0",
         "react-input-mask": "^2.0.4",
-        "sass": "^1.58.0"
+        "sass": "^1.58.0",
+        "vercel": "^28.15.4"
     },
     "devDependencies": {
         "cross-env": "^7.0.3",

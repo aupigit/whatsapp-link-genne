@@ -3,7 +3,7 @@ User-agent: *
 Disallow: /api/
 
 # Host
-Host: https://tools.huffmanks.com
+Host: https://tools.aupi.com.br
 
 # Sitemaps
-Sitemap: https://tools.huffmanks.com/sitemap.xml
+Sitemap: https://tools.aupi.com.br/sitemap.xml
