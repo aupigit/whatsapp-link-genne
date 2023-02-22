@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, CssBaseline, Typography } from "@mui/material";
+import { Chip, Container, CssBaseline, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import PageTitle from "../../components/common/PageTitle";
 import axios from "axios";
+import { purple, yellow } from "@mui/material/colors";
 
 const Form = () => {
   const [ipDetails, setIpDetails] = useState([]);
@@ -31,26 +32,68 @@ const Form = () => {
           Descubra seu IPv4
         </Typography>
         <CssBaseline />
-        {/* <Box
-              sx={{
-                marginTop: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            > */}
+
         <Box component="form" noValidate sx={{ mt: 1 }}>
-          <h4>Seu IP :</h4>
-          <h1 id="ip">{ipDetails.ip}</h1>
-          <h4>Localização aproximada: </h4>
+          <Typography
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            paragraph
+            mb={2}
+          >
+            <h4>Seu IP : </h4>
+          </Typography>
 
-          <p>
+          <Chip sx={{ bgcolor: purple[800] }} label={ipDetails.ip}></Chip>
+          <Typography
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            paragraph
+            mb={2}
+          >
+            <h4>Localização aproximada : </h4>
+          </Typography>
+
+          <Typography
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            paragraph
+            mb={2}
+          >
             {ipDetails.city}, {ipDetails.region},{ipDetails.country_name}.
-          </p>
+          </Typography>
 
-          <h4>Provedor de internet:</h4>
+          <Typography
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            paragraph
+            mb={2}
+          >
+            <h4>Provedor De Internet : </h4>
+          </Typography>
 
-          <p>{ipDetails.org}</p>
+          <Typography
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            paragraph
+            mb={2}
+          >
+            {ipDetails.org}
+          </Typography>
         </Box>
       </Container>
     </>
