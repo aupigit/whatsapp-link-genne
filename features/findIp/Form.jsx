@@ -1,38 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ArrowFatDown, HandsClapping } from "phosphor-react";
-import MaskedInput from "./MaskedInput";
-import {
-  Avatar,
-  Button,
-  Chip,
-  Container,
-  CssBaseline,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Confetti from "./Confetti";
-import { QRCodeCanvas } from "qrcode.react";
-import {
-  ArrowCircleDownTwoTone,
-  ArrowDownward,
-  Autorenew,
-  ContentCopy,
-  LinkOutlined,
-  WhatsApp,
-} from "@mui/icons-material";
+import { Container, CssBaseline, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import PageTitle from "../../components/common/PageTitle";
-import { grey, purple } from "@mui/material/colors";
-import axios  from "axios";
+import axios from "axios";
 
 const Form = () => {
   const [ipDetails, setIpDetails] = useState([]);
-  const [lat, setLat] = useState(22.5726);
-  const [lon, setLon] = useState(88.3832);
 
   // Fetching the API once when the
   // component is mounted
@@ -44,22 +17,42 @@ const Form = () => {
 
   return (
     <>
-      <h1 className="heading">IP Address Finder</h1>
-      <div className="App">
-        <div className="left">
-          <h4>What is my IPv4 address?</h4>
+      <Container component="main">
+        <PageTitle>Qual meu IP?</PageTitle>
+        <Typography
+          sx={{
+            marginTop: 2,
+            display: "flex",
+            flexDirection: "column",
+          }}
+          paragraph
+          mb={5}
+        >
+          Descubra seu IPv4
+        </Typography>
+        <CssBaseline />
+        {/* <Box
+              sx={{
+                marginTop: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            > */}
+        <Box component="form" noValidate sx={{ mt: 1 }}>
+          <h4>Seu IP :</h4>
           <h1 id="ip">{ipDetails.ip}</h1>
-          <h4>Approximate location: </h4>
+          <h4>Localização aproximada: </h4>
 
           <p>
             {ipDetails.city}, {ipDetails.region},{ipDetails.country_name}.
           </p>
 
-          <h4>Internet Service Provider(ISP):</h4>
+          <h4>Provedor de internet:</h4>
 
           <p>{ipDetails.org}</p>
-        </div>
-      </div>
+        </Box>
+      </Container>
     </>
   );
 };
