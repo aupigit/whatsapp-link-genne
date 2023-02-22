@@ -16,7 +16,7 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 import FormatPaintIcon from "@mui/icons-material/FormatPaint";
 import FactoryIcon from "@mui/icons-material/Factory";
 import SelectAllIcon from "@mui/icons-material/SelectAll";
-import { WhatsappOutlined } from "@mui/icons-material";
+import { FindInPage, WhatsappOutlined } from "@mui/icons-material";
 
 export const mainRoutes = [
   {
@@ -59,22 +59,22 @@ export const formatRoutes = [
 ];
 
 export const generateRoutes = [
-  // {
-  //     path: '/generate/email-signature',
-  //     name: 'Email Signature',
-  //     homeName: 'Email Signature',
-  //     key: 'email-signature',
-  //     icon: <DesignServicesIcon />,
-  //     description: 'Create an email signature.',
-  // },
-  // {
-  //     path: '/generate/password',
-  //     name: 'Password',
-  //     homeName: 'Password Generator',
-  //     key: 'password-generator',
-  //     icon: <KeyIcon />,
-  //     description: 'Create a strong password.',
-  // },
+  {
+      path: '/generate/find-ip',
+      name: 'find-ip',
+      homeName: 'Saiba seu IP',
+      key: 'find-Ip',
+      icon: <FindInPage />,
+      description: 'Descubra seu IP',
+  },
+  {
+      path: '/generate/password',
+      name: 'Password',
+      homeName: 'Gerador de Senhas',
+      key: 'password-generator',
+      icon: <KeyIcon />,
+      description: 'Crie Senhas Fortes',
+  },
   {
     path: "/generate/qr-code",
     name: "QR Code",
