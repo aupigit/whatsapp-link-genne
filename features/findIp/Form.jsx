@@ -8,8 +8,6 @@ import { purple, yellow } from "@mui/material/colors";
 const Form = () => {
   const [ipDetails, setIpDetails] = useState([]);
 
-  // Fetching the API once when the
-  // component is mounted
   useEffect(() => {
     axios.get("https://ipapi.co/json/").then((res) => {
       setIpDetails(res.data);
@@ -17,7 +15,6 @@ const Form = () => {
   }, []);
 
   return (
-    <>
       <Container component="main">
         <PageTitle>Qual meu IP?</PageTitle>
         <Typography
@@ -96,7 +93,6 @@ const Form = () => {
           </Typography>
         </Box>
       </Container>
-    </>
   );
 };
 

@@ -1,22 +1,22 @@
 // Page icons
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
-import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyIcon from "@mui/icons-material/Key";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import ScaleIcon from "@mui/icons-material/Scale";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import TagIcon from "@mui/icons-material/Tag";
 import TextFieldsIcon from "@mui/icons-material/TextFields";
-
-// Group icons
-import CalculateIcon from "@mui/icons-material/Calculate";
-import FormatPaintIcon from "@mui/icons-material/FormatPaint";
 import FactoryIcon from "@mui/icons-material/Factory";
-import SelectAllIcon from "@mui/icons-material/SelectAll";
-import { FindInPage, WhatsappOutlined } from "@mui/icons-material";
+import {
+  BadgeOutlined,
+  ContactPageOutlined,
+  FactCheck,
+  FindInPage,
+  Phone,
+  WhatsappOutlined,
+} from "@mui/icons-material";
 
 export const mainRoutes = [
   {
@@ -60,24 +60,56 @@ export const formatRoutes = [
 
 export const generateRoutes = [
   {
-      path: '/generate/find-ip',
-      name: 'find-ip',
-      homeName: 'Saiba seu IP',
-      key: 'find-Ip',
-      icon: <FindInPage />,
-      description: 'Descubra seu IP',
+    path: "/generate/find-ip",
+    name: "Descubra seu IP",
+    homeName: "Saiba seu IP",
+    key: "find-Ip",
+    icon: <FindInPage />,
+    description: "Descubra seu IP",
   },
   {
-      path: '/generate/password',
-      name: 'Password',
-      homeName: 'Gerador de Senhas',
-      key: 'password-generator',
-      icon: <KeyIcon />,
-      description: 'Crie Senhas Fortes',
+    path: "/generate/cpf-generator",
+    name: "Gerador de CPF",
+    homeName: "Gerador de CPF",
+    key: "cpf-generate",
+    icon: <BadgeOutlined />,
+    description: "Gerador de CPF",
+  },
+  {
+    path: "/generate/cnpj-generator",
+    name: "Gerador de CNPJ",
+    homeName: "Gerador de CNPJ",
+    key: "cnpj-generate",
+    icon: <ContactPageOutlined />,
+    description: "Gerador de CNPJ",
+  },
+  {
+    path: "/generate/cpf-cnpj-validate",
+    name: "Validador de CPF e CNPJ",
+    homeName: "Validador de CPF e CNPJ",
+    key: "cpf-cnpj-validate",
+    icon: <FactCheck />,
+    description: "Validador de CPF e CNPJ",
+  },
+  {
+    path: "/generate/find-phone",
+    name: "Qual o estado do telefone",
+    homeName: "Qual o estado do telefone",
+    key: "cpf-cnpj-validate",
+    icon: <Phone />,
+    description: "Qual o estado do telefone",
+  },
+  {
+    path: "/generate/password",
+    name: "Gerador de Senhas",
+    homeName: "Gerador de Senhas",
+    key: "password-generator",
+    icon: <KeyIcon />,
+    description: "Crie Senhas Fortes",
   },
   {
     path: "/generate/qr-code",
-    name: "QR Code",
+    name: "Gerador de QR Code",
     homeName: "Gerador de QR code",
     key: "qr-code-generator",
     icon: <QrCodeIcon />,
@@ -86,7 +118,7 @@ export const generateRoutes = [
 
   {
     path: "/generate/whatsapp-link",
-    name: "Whatsapp Link",
+    name: "Link para Whatsapp",
     homeName: "Gerador de Link para Whatsapp",
     key: "todo-list",
     icon: <WhatsappOutlined />,
