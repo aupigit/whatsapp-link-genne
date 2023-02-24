@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Chip, Container, CssBaseline, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Chip, Container, Typography } from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
 import axios from "axios";
-import { purple, yellow } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 
 const Form = () => {
-  const [ipDetails, setIpDetails] = useState([]);
+  const [ipDetails, setIpDetails] = useState({});
 
   useEffect(() => {
     axios.get("https://ipapi.co/json/").then((res) => {
@@ -15,84 +14,29 @@ const Form = () => {
   }, []);
 
   return (
-      <Container component="main">
-        <PageTitle>Qual meu IP?</PageTitle>
-        <Typography
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          paragraph
-          mb={5}
-        >
-          Descubra seu IPv4
-        </Typography>
-        <CssBaseline />
+    <Container component="main">
+      <PageTitle>Qual meu IP?</PageTitle>
+      <Typography variant="subtitle1" sx={{ mt: 1 }}>
+        Descubra seu endereço IPv4
+      </Typography>
+      <Typography variant="h5" sx={{ mt: 5 }}>
+        Seu IP:
+      </Typography>
+      <Chip label={ipDetails.ip} sx={{ bgcolor: purple[800], mt: 1 }} />
+      <Typography variant="h5" sx={{ mt: 5 }}>
+        Localização aproximada:
+      </Typography>
 
-        <Box component="form" noValidate sx={{ mt: 1 }}>
-          <Typography
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-            paragraph
-            mb={2}
-          >
-            <h4>Seu IP : </h4>
-          </Typography>
-
-          <Chip sx={{ bgcolor: purple[800] }} label={ipDetails.ip}></Chip>
-          <Typography
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-            paragraph
-            mb={2}
-          >
-            <h4>Localização aproximada : </h4>
-          </Typography>
-
-          <Typography
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-            paragraph
-            mb={2}
-          >
-            {ipDetails.city}, {ipDetails.region},{ipDetails.country_name}.
-          </Typography>
-
-          <Typography
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-            paragraph
-            mb={2}
-          >
-            <h4>Provedor De Internet : </h4>
-          </Typography>
-
-          <Typography
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-            paragraph
-            mb={2}
-          >
-            {ipDetails.org}
-          </Typography>
-        </Box>
-      </Container>
+      <Typography variant="subtitle1" sx={{ mt: 1 }}>
+        {`${ipDetails.city}, ${ipDetails.region}, ${ipDetails.country_name}`}
+      </Typography>
+      <Typography variant="h5" sx={{ mt: 5 }}>
+        Provedor de Internet:
+      </Typography>
+      <Typography variant="subtitle1" sx={{ mt: 1 }}>
+        {ipDetails.org}
+      </Typography>
+    </Container>
   );
 };
 

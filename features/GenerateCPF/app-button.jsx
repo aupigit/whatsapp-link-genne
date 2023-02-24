@@ -1,21 +1,27 @@
-import { motion } from "framer-motion";
-import { IconButton, Tooltip } from "@chakra-ui/react";
+import React from "react";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import { MaskHappy, MaskSad, ArrowsClockwise } from "phosphor-react";
+import AppIcon from "./app-icon";
 
-const AppButton = ({ motionKey, tooltip, ...props }) => {
+const MaskButton = ({ mask, onClick }) => {
   return (
- 
-    <motion.div
-      key={motionKey}
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 20, opacity: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      <Tooltip label={tooltip}>
-        <IconButton {...props} />
-      </Tooltip>
-    </motion.div>
+    <Tooltip title={mask ? "Sem máscara" : "Com máscara"}>
+      <IconButton onClick={onClick} color="inherit">
+        <AppIcon icon={mask ? MaskHappy : MaskSad} />
+      </IconButton>
+    </Tooltip>
   );
 };
 
-export default AppButton;
+const GenerateButton = ({ onClick }) => {
+  return (
+    <Tooltip title="Gerar novo documento">
+      <IconButton onClick={onClick} color="inherit">
+        <AppIcon icon={ArrowsClockwise} />
+      </IconButton>
+    </Tooltip>
+  );
+};
+
+export { MaskButton, GenerateButton };

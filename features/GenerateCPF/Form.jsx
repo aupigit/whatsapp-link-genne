@@ -7,7 +7,7 @@ import { onGenerateCPF, onSetMask } from "./document";
 import { DocumentType } from "../../constants/enums";
 
 import AppIcon from "./app-icon";
-import AppButton from "./app-button";
+import AppButton, { GenerateButton, MaskButton } from "./app-button";
 import ServicesButton from "./services-button";
 import CopyButton from "./copy-button";
 import { Box, Container, Typography } from "@mui/material";
@@ -83,20 +83,8 @@ const Form = () => {
         >
           <HStack>
             <CopyButton text={document} />
-            <AppButton
-              motionKey={mask ? "mask-happy" : "mask-sad"}
-              tooltip={mask ? "Sem máscara" : "Com máscara"}
-              aria-label="Toggle Máscara"
-              icon={<AppIcon icon={mask ? MaskHappy : MaskSad} />}
-              onClick={() => onToggleMask(!mask)}
-            />
-            <AppButton
-              motionKey={document}
-              tooltip="Gerar novo documento"
-              aria-label="Re:Gerar"
-              icon={<AppIcon icon={ArrowsClockwise} />}
-              onClick={() => onGenerate(documentType)}
-            />
+            <MaskButton mask={mask} onClick={() => onToggleMask(!mask)} />
+            <GenerateButton onClick={() => onGenerate(documentType)} />
           </HStack>
         </Box>
       </Container>

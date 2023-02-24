@@ -1,22 +1,26 @@
-import { useClipboard } from "@chakra-ui/react"
-import { Check, CopySimple } from "phosphor-react"
+import { Button, Tooltip } from "@mui/material";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
+import { useState } from "react";
 
-import AppButton from "./app-button"
-import AppIcon from "./app-icon"
+const CopyButton = ({ text }) => {
+  const [copied, setCopied] = useState(false);
 
-const CopyButton = ({ text, ...props }) => {
-  const { hasCopied, onCopy } = useClipboard(text)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+  };
 
   return (
-    <AppButton
-      motionKey={hasCopied ? "copied" : "copy"}
-      tooltip={hasCopied ? "Copiado!" : "Copiar"}
-      aria-label="Copiar documento gerado"
-      icon={<AppIcon icon={hasCopied ? Check : CopySimple} />}
-      onClick={onCopy}
-      {...props}
-    />
-  )
-}
+    <Tooltip title={copied ? "Copiado!" : "Copiar"}>
+      <Button
+        aria-label="Copiar"
+        onClick={handleCopy}
+        endIcon={<FileCopyIcon />}
+      >
+        {copied ? "Copiado" : "Copiar"}
+      </Button>
+    </Tooltip>
+  );
+};
 
-export default CopyButton
+export default CopyButton;

@@ -7,7 +7,7 @@ import { onGenerateCNPJ, onSetMask } from "./document";
 import { DocumentType } from "../../constants/enums";
 
 import AppIcon from "./app-icon";
-import AppButton from "./app-button";
+import AppButton, { GenerateButton, MaskButton } from "./app-button";
 import ServicesButton from "./services-button";
 import CopyButton from "./copy-button";
 import { Box, Container, Typography } from "@mui/material";
@@ -53,52 +53,23 @@ const Form = () => {
       {/* <VStack alignItems="center" justifyContent="center" flex="1" spacing="10"> */}
 
       <Container component="main">
+      <VStack alignItems="stretch" spacing="4">
         <PageTitle>Gerador de CNPJ</PageTitle>
-        <Typography
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          paragraph
-          mb={3}
-        >
+        <Typography>
           Use números de CNPJ válidos em testes.
         </Typography>
         <ServicesButton documentType={documentType} onGenerate={onGenerate} />
-
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <Box>
           <Heading as="h2">{document}</Heading>
         </Box>
-        <Box
-          sx={{
-            marginTop: 2,
-          }}
-        >
-          <HStack>
-            <CopyButton text={document} />
-            <AppButton
-              motionKey={mask ? "mask-happy" : "mask-sad"}
-              tooltip={mask ? "Sem máscara" : "Com máscara"}
-              aria-label="Toggle Máscara"
-              icon={<AppIcon icon={mask ? MaskHappy : MaskSad} />}
-              onClick={() => onToggleMask(!mask)}
-            />
-            <AppButton
-              motionKey={document}
-              tooltip="Gerar novo documento"
-              aria-label="Re:Gerar"
-              icon={<AppIcon icon={ArrowsClockwise} />}
-              onClick={() => onGenerate(documentType)}
-            />
+        <Box>
+          <HStack spacing="4">
+          <CopyButton text={document} />
+        <MaskButton mask={mask} onClick={() => onToggleMask(!mask)} />
+        <GenerateButton onClick={() => onGenerate(documentType)} />
           </HStack>
         </Box>
+      </VStack>
       </Container>
     </>
   );

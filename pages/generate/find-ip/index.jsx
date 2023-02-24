@@ -18,7 +18,7 @@ const TodoList = () => {
       >
         <SEO
           description="Saiba o seu ip local"
-          title="Whatsapp Link"
+          title="Meu IP"
           url="/generate/find-ip"
           imageUrl="/todo-list.png"
         />

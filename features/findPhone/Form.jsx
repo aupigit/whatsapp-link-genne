@@ -1,21 +1,18 @@
 import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import statesData from "./state.json";
-import { Container } from "@mui/system";
-import PageTitle from "../../components/common/PageTitle";
-import { Box, Chip, Typography } from "@mui/material";
-import MaskedInput from "./MaskedInput";
+import { Container, Typography, Box, Chip } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { LocationCity } from "@mui/icons-material";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import MaskedInput from "./MaskedInput";
+import PageTitle from "../../components/common/PageTitle";
+import statesData from "./state.json";
 
 function getStateFromPhone(phone) {
   const phoneDigits = phone.replace(/[^\d]/g, "");
   for (const [key, value] of Object.entries(statesData[0])) {
-    if (value.areaCodes) {
-      if (value.areaCodes.some((code) => phoneDigits.startsWith(code))) {
-        return key;
-      }
+    if (value.areaCodes?.some((code) => phoneDigits.startsWith(code))) {
+      return key;
     }
   }
   return "Não encontrado";
@@ -38,48 +35,34 @@ function App() {
   return (
     <Container component="main">
       <PageTitle>Buscador de Estado com o Número de Telefone</PageTitle>
-      <Typography
-        sx={{
-          marginTop: 1.5,
-          display: "flex",
-          flexDirection: "column",
-        }}
-        paragraph
-        mb={3}
-      >
-        Encontre o estado atraves do número de telefone
+      <Typography sx={{ my: 2 }}>
+        Encontre o estado através do número de telefone
       </Typography>
 
       <MaskedInput
-        mask={"(99) 99999-9999"}
+        mask="(99) 99999-9999"
         label="Número de telefone"
         value={phone}
         onChange={handlePhoneChange}
         margin="normal"
         variant="outlined"
       />
-      <br />
+
       <Button
-   
-        sx={{
-          marginTop: 2,
-          display: "flex",
-          flexDirection: "column",
-        }}
         variant="contained"
         onClick={handleButtonClick}
+        sx={{ mt: 2 }}
       >
         Verificar estado
       </Button>
+
       {showState && state && (
-        <Typography variant="h2">
-        <Chip
-          sx={{
-            marginTop: 2,
-            bgcolor: purple[700],
-          }}
-          label={`O estado é: ${state}`}
-        ></Chip>
+        <Typography variant="h2" sx={{ mt: 2 }}>
+          <Chip
+            icon={<LocationCity />}
+            label={`O estado é: ${state}`}
+            sx={{ bgcolor: purple[700] }}
+          />
         </Typography>
       )}
     </Container>
