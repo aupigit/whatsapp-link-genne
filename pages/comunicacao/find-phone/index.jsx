@@ -1,8 +1,7 @@
 import TodoStateProvider from "../../../context/TodoContext";
 
 import SEO from "../../../components/common/SEO";
-import PageTitle from "../../../components/common/PageTitle";
-import Screen from "../../../features/WhatsappLink/Screens";
+import Screen from "../../../features/findPhone/Screens";
 import { Box, Typography } from "@mui/material";
 
 const TodoList = () => {
@@ -17,9 +16,9 @@ const TodoList = () => {
         }}
       >
         <SEO
-          description="Create a Whatsapp Link."
+          description="Saiba o seu ip local"
           title="Whatsapp Link"
-          url="/generate/whatsapp-link"
+          url="/comunicacao/find-phone"
           imageUrl="/todo-list.png"
         />
 

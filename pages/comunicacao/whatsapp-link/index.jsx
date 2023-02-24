@@ -1,7 +1,8 @@
 import TodoStateProvider from "../../../context/TodoContext";
 
 import SEO from "../../../components/common/SEO";
-import Screen from "../../../features/GenerateCPF/Screens";
+import PageTitle from "../../../components/common/PageTitle";
+import Screen from "../../../features/WhatsappLink/Screens";
 import { Box, Typography } from "@mui/material";
 
 const TodoList = () => {
@@ -16,9 +17,9 @@ const TodoList = () => {
         }}
       >
         <SEO
-          description="Gerador de CPF"
-          title="Gerador de CPF"
-          url="/generate/cpf-generator"
+          description="Create a Whatsapp Link."
+          title="Whatsapp Link"
+          url="/comunicacao/whatsapp-link"
           imageUrl="/todo-list.png"
         />
 

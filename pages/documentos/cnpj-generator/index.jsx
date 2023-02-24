@@ -1,7 +1,7 @@
 import TodoStateProvider from "../../../context/TodoContext";
 
 import SEO from "../../../components/common/SEO";
-import Screen from "../../../features/ValidateCPF-CNPJ/Screens";
+import Screen from "../../../features/GenerateCNPJ/Screens";
 import { Box } from "@mui/material";
 
 const TodoList = () => {
@@ -16,9 +16,9 @@ const TodoList = () => {
         }}
       >
         <SEO
-          description="Validador de CPF CNPJ"
-          title="Validador de CPF e CNPJ"
-          url="/generate/cpf-cnpj-validate"
+          description="Gerador de CNPJ"
+          title="Gerar CNPJ"
+          url="/documentos/cnpj-generator"
           imageUrl="/todo-list.png"
         />
 

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import {
-  calculateRoutes,
-  formatRoutes,
-  generateRoutes,
+  utilsRoutes,
+  comunicacaoRoutes,
+  documentosRoutes,
   navItems,
-  pickerRoutes,
+  securityRoutes,
 } from "../constants/routes";
 
 import { Typography } from "@mui/material";
@@ -30,10 +30,11 @@ const Home = () => {
         url="/"
       />
 
-      <PageTitle>Home</PageTitle>
+      <PageTitle>Ferramentas pro seu dia a dia desenvolvido por aupi</PageTitle>
 
       <Typography paragraph mb={5}>
-        Lista de ferramentas para ajudar a acelerar o desenvolvimento pra você e para sua empresa.
+        Lista de ferramentas para ajudar a acelerar o desenvolvimento pra você e
+        para sua empresa.
       </Typography>
 
       <BottomMenu
@@ -41,8 +42,10 @@ const Home = () => {
         handleScreen={handleScreen}
         navItems={navItems}
       >
-        {screen === "generate" && <CardLinks routes={generateRoutes} />}
-
+        {screen === "comunicacao" && <CardLinks routes={comunicacaoRoutes} />}
+        {screen === "documentos" && <CardLinks routes={documentosRoutes} />}
+        {screen === "security" && <CardLinks routes={securityRoutes} />}
+        {screen === "utils" && <CardLinks routes={utilsRoutes} />}
       </BottomMenu>
     </>
   );

@@ -1,8 +1,9 @@
 import TodoStateProvider from "../../../context/TodoContext";
 
 import SEO from "../../../components/common/SEO";
-import Screen from "../../../features/GenerateCNPJ/Screens";
-import { Box } from "@mui/material";
+import PageTitle from "../../../components/common/PageTitle";
+import Screen from "../../../features/findIp/Screens";
+import { Box, Typography } from "@mui/material";
 
 const TodoList = () => {
   return (
@@ -16,9 +17,9 @@ const TodoList = () => {
         }}
       >
         <SEO
-          description="Gerador de CNPJ"
-          title="Gerar CNPJ"
-          url="/generate/cnpj-generator"
+          description="Saiba o seu ip local"
+          title="Meu IP"
+          url="/securanca/find-ip"
           imageUrl="/todo-list.png"
         />
 

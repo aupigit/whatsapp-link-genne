@@ -1,8 +1,8 @@
 import TodoStateProvider from "../../../context/TodoContext";
 
 import SEO from "../../../components/common/SEO";
-import Screen from "../../../features/findPhone/Screens";
-import { Box, Typography } from "@mui/material";
+import Screen from "../../../features/ValidateCPF-CNPJ/Screens";
+import { Box } from "@mui/material";
 
 const TodoList = () => {
   return (
@@ -16,9 +16,9 @@ const TodoList = () => {
         }}
       >
         <SEO
-          description="Saiba o seu ip local"
-          title="Whatsapp Link"
-          url="/generate/find-phone"
+          description="Validador de CPF CNPJ"
+          title="Validador de CPF e CNPJ"
+          url="/documentos/cpf-cnpj-validate"
           imageUrl="/todo-list.png"
         />
 
