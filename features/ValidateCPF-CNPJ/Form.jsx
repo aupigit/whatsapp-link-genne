@@ -5,26 +5,29 @@ import Box from "@mui/material/Box";
 import { cpf as cpfValidator, cnpj as cnpjValidator } from "cpf-cnpj-validator";
 import { Container, Typography } from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
+import { Send, SendOutlined } from "@mui/icons-material";
 
 const Validator = () => {
   const [inputValue, setInputValue] = useState("");
-  const [isCpfValid, setIsCpfValid] = useState(null);
-  const [isCnpjValid, setIsCnpjValid] = useState(null);
+  const [isValid, setIsValid] = useState(null);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    setIsCpfValid(null);
-    setIsCnpjValid(null);
+    setIsValid(null);
   };
 
-  const handleValidateCpf = () => {
-    const isValid = cpfValidator.isValid(inputValue);
-    setIsCpfValid(isValid);
-  };
-
-  const handleValidateCnpj = () => {
-    const isValid = cnpjValidator.isValid(inputValue);
-    setIsCnpjValid(isValid);
+  const handleValidate = () => {
+    const isCpf = inputValue.length === 11;
+    const isCnpj = inputValue.length === 14;
+    if (isCpf) {
+      const isValid = cpfValidator.isValid(inputValue);
+      setIsValid(isValid);
+    } else if (isCnpj) {
+      const isValid = cnpjValidator.isValid(inputValue);
+      setIsValid(isValid);
+    } else {
+      setIsValid(false);
+    }
   };
 
   return (
@@ -47,34 +50,22 @@ const Validator = () => {
           value={inputValue}
           onChange={handleInputChange}
         />
-        {isCpfValid !== null && (
+        {isValid !== null && (
           <Box sx={{ display: "flex", mt: 2 }}>
-            {isCpfValid ? (
-              <p style={{ color: "green" }}>CPF válido</p>
+            {isValid ? (
+              <p style={{ color: "green" }}>
+                {inputValue.length === 11 ? "CPF" : "CNPJ"} válido
+              </p>
             ) : (
-              <p style={{ color: "red" }}>CPF inválido</p>
-            )}
-          </Box>
-        )}
-        {isCnpjValid !== null && (
-          <Box sx={{ display: "flex", mt: 2 }}>
-            {isCnpjValid ? (
-              <p style={{ color: "green" }}>CNPJ válido</p>
-            ) : (
-              <p style={{ color: "red" }}>CNPJ inválido</p>
+              <p style={{ color: "red" }}>
+                {inputValue.length === 11 ? "CPF" : "CNPJ"} inválido
+              </p>
             )}
           </Box>
         )}
         <Box sx={{ display: "flex", mt: 2 }}>
-          <Button variant="contained" onClick={handleValidateCpf}>
-            Validar CPF
-          </Button>
-          <Button
-            variant="contained"
-            onClick={handleValidateCnpj}
-            sx={{ ml: 1 }}
-          >
-            Validar CNPJ
+          <Button variant="contained" onClick={handleValidate} endIcon={<Send/>}>
+            Validar
           </Button>
         </Box>
       </Box>
