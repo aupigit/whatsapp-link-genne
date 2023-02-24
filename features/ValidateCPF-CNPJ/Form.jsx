@@ -3,9 +3,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { cpf as cpfValidator, cnpj as cnpjValidator } from "cpf-cnpj-validator";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Alert } from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
-import { Send, SendOutlined } from "@mui/icons-material";
+import { Send } from "@mui/icons-material";
 
 const Validator = () => {
   const [inputValue, setInputValue] = useState("");
@@ -31,6 +31,15 @@ const Validator = () => {
   };
 
   return (
+    <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "20vh",
+    }}
+  >
     <Container component="main">
       <PageTitle>Validador de CPF e CNPJ</PageTitle>
       <Typography
@@ -53,13 +62,13 @@ const Validator = () => {
         {isValid !== null && (
           <Box sx={{ display: "flex", mt: 2 }}>
             {isValid ? (
-              <p style={{ color: "green" }}>
+              <Alert severity="success">
                 {inputValue.length === 11 ? "CPF" : "CNPJ"} válido
-              </p>
+              </Alert>
             ) : (
-              <p style={{ color: "red" }}>
+              <Alert severity="error">
                 {inputValue.length === 11 ? "CPF" : "CNPJ"} inválido
-              </p>
+              </Alert>
             )}
           </Box>
         )}
@@ -70,6 +79,7 @@ const Validator = () => {
         </Box>
       </Box>
     </Container>
+    </Box>
   );
 };
 
