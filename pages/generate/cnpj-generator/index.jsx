@@ -2,7 +2,7 @@ import TodoStateProvider from "../../../context/TodoContext";
 
 import SEO from "../../../components/common/SEO";
 import Screen from "../../../features/GenerateCNPJ/Screens";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const TodoList = () => {
   return (

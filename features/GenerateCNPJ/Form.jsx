@@ -2,12 +2,7 @@ import React from "react";
 import { Heading, HStack, VStack } from "@chakra-ui/react";
 import { ArrowsClockwise, MaskHappy, MaskSad } from "phosphor-react";
 
-import {
-  onGenerateCNPJ,
-  onGenerateCPF,
-  onGenerateRG,
-  onSetMask,
-} from "./document";
+import { onGenerateCNPJ, onSetMask } from "./document";
 
 import { DocumentType } from "../../constants/enums";
 

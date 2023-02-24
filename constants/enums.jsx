@@ -1,7 +1,6 @@
-export let DocumentType
+export let DocumentType;
 
-;(function(DocumentType) {
-  DocumentType["CPF"] = "CPF"
-  DocumentType["CNPJ"] = "CNPJ"
-})(DocumentType || (DocumentType = {}))
-
+(function (DocumentType) {
+  DocumentType["CPF"] = "CPF";
+  DocumentType["CNPJ"] = "CNPJ";
+})(DocumentType || (DocumentType = {}));

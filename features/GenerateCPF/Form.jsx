@@ -2,12 +2,7 @@ import React from "react";
 import { Heading, HStack, VStack } from "@chakra-ui/react";
 import { ArrowsClockwise, MaskHappy, MaskSad } from "phosphor-react";
 
-import {
-  onGenerateCNPJ,
-  onGenerateCPF,
-  onGenerateRG,
-  onSetMask,
-} from "./document";
+import { onGenerateCPF, onSetMask } from "./document";
 
 import { DocumentType } from "../../constants/enums";
 
@@ -32,12 +27,10 @@ const Form = () => {
     setDocumentType(type);
     let doc = "";
 
-    if (type === DocumentType.CNPJ) {
-      doc = onGenerateCNPJ(mask);
+    if (type === DocumentType.CPF) {
+      doc = onGenerateCPF(mask);
     } else if (type === DocumentType.CPF) {
       doc = onGenerateCPF(mask);
-    } else if (type === DocumentType.RG) {
-      doc = onGenerateRG(mask);
     }
 
     setDocument(doc);
