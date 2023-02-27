@@ -15,6 +15,7 @@ const CopyButton = ({ text }) => {
       <Button
         aria-label="Copiar"
         onClick={handleCopy}
+        variant="contained"
         endIcon={<FileCopyIcon />}
       >
         {copied ? "Copiado" : "Copiar"}

@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Container, Typography, Box, Chip } from "@mui/material";
+import { Container, Typography, Box, Chip, Paper } from "@mui/material";
 import { purple } from "@mui/material/colors";
-import { LocationCity } from "@mui/icons-material";
+import { Add, AddLocation, ArrowDownward, LocationCity, MyLocation } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import MaskedInput from "./MaskedInput";
 import PageTitle from "../../components/common/PageTitle";
 import statesData from "./state.json";
+import { ArrowDown } from "phosphor-react";
 
 function getStateFromPhone(phone) {
   const phoneDigits = phone.replace(/[^\d]/g, "");
@@ -33,38 +34,43 @@ function App() {
   };
 
   return (
+    
     <Container component="main">
-      <PageTitle>Buscador de Estado com o Número de Telefone</PageTitle>
+      <PageTitle>Buscador de Estado pelo Número de Telefone</PageTitle>
       <Typography sx={{ my: 2 }}>
         Encontre o estado através do número de telefone
       </Typography>
 
-      <MaskedInput
-        mask="(99) 99999-9999"
-        label="Número de telefone"
-        value={phone}
-        onChange={handlePhoneChange}
-        margin="normal"
-        variant="outlined"
-      />
+      <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <Typography variant="h5">
+            Preencha um número de telefone abaixo
+          </Typography>
+          <ArrowDownward sx={{ mr: 1 }} />
+        </Box>
 
-      <Button
-        variant="contained"
-        onClick={handleButtonClick}
-        sx={{ mt: 2 }}
-      >
-        Verificar estado
-      </Button>
+        <MaskedInput
+          mask="(99) 99999-9999"
+          label="Número de telefone"
+          value={phone}
+          onChange={handlePhoneChange}
+          margin="normal"
+          variant="outlined"
+        />
 
-      {showState && state && (
-        <Typography variant="h2" sx={{ mt: 2 }}>
-          <Chip
-            icon={<LocationCity />}
-            label={`O estado é: ${state}`}
-            sx={{ bgcolor: purple[700] }}
-          />
-        </Typography>
-      )}
+        <Button variant="contained" onClick={handleButtonClick} endIcon={<MyLocation/>} sx={{ mt: 2 }}>
+          Verificar estado
+        </Button>
+
+        {showState && state && (
+          <Typography variant="subtitle1" sx={{ mt: 3 }}>
+            <Chip
+              label={`O estado é: ${state}`}
+              sx={{ bgcolor: purple[700], width: "100%" }}
+            />
+          </Typography>
+        )}
+      </Paper>
     </Container>
   );
 }

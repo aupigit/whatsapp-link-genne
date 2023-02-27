@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowFatDown, HandsClapping } from "phosphor-react";
+import { HandsClapping } from "phosphor-react";
 import MaskedInput from "./MaskedInput";
 import {
   Avatar,
@@ -10,6 +10,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Paper,
   Stack,
   TextField,
   Typography,
@@ -17,7 +18,6 @@ import {
 import Confetti from "./Confetti";
 import { QRCodeCanvas } from "qrcode.react";
 import {
-  ArrowCircleDownTwoTone,
   ArrowDownward,
   Autorenew,
   ContentCopy,
@@ -118,7 +118,9 @@ const Form = () => {
             <ListItemText primary="Ou se preferir use o QR CODE abaixo" />
           </ListItem>
           <br />
-          <QRCodeCanvas id="qrCode" value={urlState} size={200} level={"H"} />
+          <Paper elevation={1} sx={{ p: 5, }}>
+            <QRCodeCanvas id="qrCode" value={urlState} size={150} level={"H"} />
+          </Paper>
         </Box>
       </Container>
     );
@@ -130,6 +132,7 @@ const Form = () => {
         {isSubmitting && (
           <>
             {!returnData && (
+              
               <Container component="main">
                 <Confetti />
                 <PageTitle>
@@ -147,24 +150,19 @@ const Form = () => {
                   Agora você pode enviar esse link pra quem você quiser
                 </Typography>
                 <CssBaseline />
-                {/* <Box
-              sx={{
-                marginTop: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            > */}
-                <Box
-                  component="form"
-                  onSubmit={handleSubmit}
-                  noValidate
-                  sx={{ mt: 1 }}
-                >
-                  {urlState ? renderResult(urlState) : ""}
 
-                  {/* </Box> */}
-                </Box>
+                <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
+                  <Box
+                    component="form"
+                    onSubmit={handleSubmit}
+                    noValidate
+                    sx={{ mt: 1 }}
+                  >
+                    {urlState ? renderResult(urlState) : ""}
+
+                    {/* </Box> */}
+                  </Box>
+                </Paper>
               </Container>
             )}
           </>
@@ -187,51 +185,45 @@ const Form = () => {
               precisa mais adicionar um contato para iniciar uma conversa.
             </Typography>
             <CssBaseline />
-            {/* <Box
-              sx={{
-                marginTop: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            > */}
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
-            >
-              <MaskedInput
-                id="phone"
-                type="number"
-                mask={"(99) 99999-9999"}
-                name="phone"
-                label={"Escreva seu número de telefone aqui 📱"}
-                onChange={(e) => setPhoneState(e.target.value)}
-                value={phoneState}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                label="Escreva sua mensagem aqui ✍️"
-                value={messageState}
-                id="message"
-                name="message"
-                placeholder="Ex: Olá em que posso ajudar"
-                onChange={(e) => setMessageState(e.target.value)}
-              />
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                startIcon={<LinkOutlined />}
+            <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 1 }}
               >
-                Gerar Link
-              </Button>
-              {/* </Box> */}
-            </Box>
+                <MaskedInput
+                  id="phone"
+                  type="number"
+                  mask={"(99) 99999-9999"}
+                  name="phone"
+                  label={"Escreva seu número de telefone aqui 📱"}
+                  onChange={(e) => setPhoneState(e.target.value)}
+                  value={phoneState}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  label="Escreva sua mensagem aqui ✍️"
+                  value={messageState}
+                  id="message"
+                  name="message"
+                  placeholder="Ex: Olá em que posso ajudar"
+                  onChange={(e) => setMessageState(e.target.value)}
+                />
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  startIcon={<LinkOutlined />}
+                >
+                  Gerar Link
+                </Button>
+                {/* </Box> */}
+              </Box>
+            </Paper>
           </Container>
         )}
       </>

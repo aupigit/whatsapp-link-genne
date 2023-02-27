@@ -10,7 +10,7 @@ import AppIcon from "./app-icon";
 import AppButton, { GenerateButton, MaskButton } from "./app-button";
 import ServicesButton from "./services-button";
 import CopyButton from "./copy-button";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Paper, Typography } from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
 
 const Form = () => {
@@ -50,8 +50,6 @@ const Form = () => {
 
   return (
     <>
-      {/* <VStack alignItems="center" justifyContent="center" flex="1" spacing="10"> */}
-
       <Container component="main">
         <PageTitle>Gerador de CPF</PageTitle>
         <Typography
@@ -65,28 +63,30 @@ const Form = () => {
         >
           Use números de CPF válidos em testes.
         </Typography>
-        <ServicesButton documentType={documentType} onGenerate={onGenerate} />
+        <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
+          <ServicesButton documentType={documentType} onGenerate={onGenerate} />
 
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Heading as="h2">{document}</Heading>
-        </Box>
-        <Box
-          sx={{
-            marginTop: 2,
-          }}
-        >
-          <HStack>
-            <CopyButton text={document} />
-            <MaskButton mask={mask} onClick={() => onToggleMask(!mask)} />
-            <GenerateButton onClick={() => onGenerate(documentType)} />
-          </HStack>
-        </Box>
+          <Box
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Heading as="h2">{document}</Heading>
+          </Box>
+          <Box
+            sx={{
+              marginTop: 2,
+            }}
+          >
+            <HStack>
+              <CopyButton text={document} />
+              <MaskButton mask={mask} onClick={() => onToggleMask(!mask)} />
+              <GenerateButton onClick={() => onGenerate(documentType)} />
+            </HStack>
+          </Box>
+        </Paper>
       </Container>
     </>
   );

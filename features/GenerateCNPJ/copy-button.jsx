@@ -13,6 +13,7 @@ const CopyButton = ({ text }) => {
   return (
     <Tooltip title={copied ? "Copiado!" : "Copiar"}>
       <Button
+      variant="contained"
         aria-label="Copiar"
         onClick={handleCopy}
         endIcon={<FileCopyIcon />}

@@ -1,4 +1,4 @@
-import { Box, Container, TextField } from '@mui/material'
+import { Box, Container, Paper, TextField } from '@mui/material'
 
 import { qrCodeInputs } from '../../constants/qrCode'
 import { qrCodePickers } from '../../constants/popoverColorPicker'
@@ -9,6 +9,8 @@ import PopoverColorPicker from '../../components/common/PopoverColorPicker'
 
 const QrCodeForm = ({ values, downloadUrl, handleFocus, handleChange, handleBlur, handleSubmit, handleReset }) => {
     return (
+        
+        <Paper elevation={1} sx={{ p: 5, mt: 5 }}>
         <Container maxWidth='sm' disableGutters sx={{ margin: 0 }}>
             <Box component='form' onSubmit={handleSubmit} autoComplete='off' sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                 {qrCodeInputs.map((input) => (
@@ -38,6 +40,7 @@ const QrCodeForm = ({ values, downloadUrl, handleFocus, handleChange, handleBlur
                 <ActionGroup values={values} downloadUrl={downloadUrl} handleReset={handleReset} />
             </Box>
         </Container>
+        </Paper>
     )
 }
 
