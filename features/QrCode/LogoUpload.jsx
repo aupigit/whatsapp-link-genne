@@ -42,7 +42,7 @@ const LogoUpload = ({ logoBackgroundTransparent, logoName, handleChange }) => {
             onChange={handleChange}
           />
         }
-        label="Logo is transparent"
+        label="Logo transparente"
       />
     </div>
   );

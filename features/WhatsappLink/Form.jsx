@@ -4,6 +4,7 @@ import MaskedInput from "./MaskedInput";
 import {
   Avatar,
   Button,
+  Card,
   Chip,
   Container,
   CssBaseline,
@@ -21,12 +22,14 @@ import {
   ArrowDownward,
   Autorenew,
   ContentCopy,
+  Download,
+  GetApp,
   LinkOutlined,
   WhatsApp,
 } from "@mui/icons-material";
 import { Box } from "@mui/system";
 import PageTitle from "../../components/common/PageTitle";
-import { grey, purple } from "@mui/material/colors";
+import { saveAs } from "file-saver";
 
 const Form = () => {
   const [phoneState, setPhoneState] = useState("");
@@ -65,62 +68,89 @@ const Form = () => {
   function renderResult(url) {
     return (
       <Container>
-        <Chip sx={{ bgcolor: purple[800] }} label={urlState}></Chip>
-        <br />
+        <Paper elevation={3} sx={{ p: 3 }}>
+          <Typography variant="subtitle1" sx={{ mb: 2 }}>
+            {urlState}
+          </Typography>
 
-        <Stack direction="row" spacing={1}>
-          <Box>
-            <Button
-              sx={{ mt: 3, mb: 2 }}
-              className="btn waves-effect waves-light teal button-handler"
-              onClick={() => {
-                copyToClipboard(urlState);
-              }}
-              variant="contained"
-              endIcon={<ContentCopy />}
-            >
-              {copyState}
-            </Button>
-          </Box>
+          <Stack direction="row" spacing={1}>
+            <Box>
+              <Button
+                sx={{ mt: 3, mb: 2 }}
+                className="btn waves-effect waves-light teal button-handler"
+                onClick={() => {
+                  copyToClipboard(urlState);
+                }}
+                variant="contained"
+                endIcon={<ContentCopy />}
+              >
+                {copyState}
+              </Button>
+            </Box>
+            <Box>
+              <Button
+                sx={{ mt: 3, mb: 2 }}
+                className="btn waves-effect waves-light teal button-handler"
+                href={url}
+                target="a_blank"
+                endIcon={<WhatsApp />}
+                variant="filled"
+              >
+                Enviar no WhatsApp
+              </Button>
+            </Box>{" "}
+          </Stack>
 
-          <Box>
-            <Button
-              sx={{ mt: 3, mb: 2 }}
-              className="btn waves-effect waves-light teal button-handler"
-              href={url}
-              target="a_blank"
-              endIcon={<WhatsApp />}
-              variant="filled"
-            >
-              Enviar no WhatsApp
-            </Button>
-          </Box>
-        </Stack>
+          <Button
+            sx={{ mt: 1, mb: 2 }}
+            onClick={() => {
+              clearAll();
+            }}
+            variant="contained"
+            endIcon={<Autorenew />}
+          >
+            Refazer
+          </Button>
+        </Paper>
 
-        <Button
-          sx={{ mt: 1, mb: 2 }}
-          onClick={() => {
-            clearAll();
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: 360,
+            bgcolor: "background.paper",
+            mt: 2,
+            p: 2,
           }}
-          variant="contained"
-          endIcon={<Autorenew />}
         >
-          Refazer
-        </Button>
-
-        <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-          <ListItem sx={{ mt: 2, mb: 1 }}>
-            <ListItemAvatar>
-              <Avatar sx={{ bgcolor: grey[400] }}>
-                <ArrowDownward />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Ou se preferir use o QR CODE abaixo" />
-          </ListItem>
-          <br />
-          <Paper elevation={1} sx={{ p: 5, }}>
+          <Typography variant="h6">QR Code</Typography>
+          <Typography variant="subtitle1" sx={{ mb: 1 }}>
+            Ou baixe a imagem abaixo:
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mb: 2,
+            }}
+          >
             <QRCodeCanvas id="qrCode" value={urlState} size={150} level={"H"} />
-          </Paper>
+          </Box>
+
+          <Button
+            sx={{ width: "100%", mb: 2 }}
+            variant="contained"
+            endIcon={<Download />}
+            onClick={() => {
+              const canvas = document.getElementById("qrCode");
+              canvas.toBlob((blob) => {
+                saveAs(blob, "qrcode.png");
+              });
+            }}
+            download="qr-code.png"
+          >
+            Download
+          </Button>
         </Box>
       </Container>
     );
@@ -132,7 +162,6 @@ const Form = () => {
         {isSubmitting && (
           <>
             {!returnData && (
-              
               <Container component="main">
                 <Confetti />
                 <PageTitle>

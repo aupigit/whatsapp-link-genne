@@ -24,6 +24,7 @@
         "convert": "^4.5.0",
         "cpf-cnpj-validator": "^1.0.3",
         "easyqrcodejs": "^4.4.12",
+        "file-saver": "^2.0.5",
         "formik": "^2.2.9",
         "framer-motion": "^9.1.2",
         "materialize-css": "^1.0.0-rc.2",

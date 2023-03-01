@@ -1,5 +1,5 @@
 export const initialValues = {
-    dotColor: '#5b21b6',
+    dotColor: '#4F6792',
     backgroundColor: '#fff',
     ringOuter: '#222',
     ringInner: '#222',

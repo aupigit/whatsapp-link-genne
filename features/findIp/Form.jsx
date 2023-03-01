@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Chip, Container, Grid, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
 import axios from "axios";
-import { purple } from "@mui/material/colors";
+import { blue, purple } from "@mui/material/colors";
 
 const Form = () => {
   const [ipDetails, setIpDetails] = useState({});
@@ -30,12 +39,14 @@ const Form = () => {
       <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
         <Grid container spacing={2} sx={{ alignItems: "center" }}>
           <Grid item>
-            <Typography variant="h5">
-              Seu IP:
-            </Typography>
+            <Typography variant="h5">Seu IP:</Typography>
           </Grid>
           <Grid item>
-            <Chip label={ipDetails.ip} sx={{ bgcolor: purple[800] }} />
+            <Card>
+              <Box sx={{ bgcolor: "#4F6792", p: 1.2 }}>
+                <Typography variant="body1">{ipDetails.ip}</Typography>
+              </Box>
+            </Card>
           </Grid>
         </Grid>
         <Typography variant="h5" sx={{ mt: 2 }}>
@@ -47,9 +58,7 @@ const Form = () => {
         <Typography variant="h5" sx={{ mb: 1 }}>
           Provedor de Internet:
         </Typography>
-        <Typography variant="subtitle1">
-          {ipDetails.org}
-        </Typography>
+        <Typography variant="subtitle1">{ipDetails.org}</Typography>
       </Paper>
     </Container>
   );

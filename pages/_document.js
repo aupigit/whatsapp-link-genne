@@ -22,34 +22,34 @@ const Document = () => {
           rel="icon"
           type="image/png"
           sizes="1200x630"
-          href="/logos/stratools-stacked.png"
+          href="/logos/favicon.ico"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="192x192"
-          href="/logos/logo-192x192.png"
+          href="/logos/favicon.ico"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="512x512"
-          href="/logos/logo-512x512.png"
+          href="/logos/favicon.ico"
         />
         <link
           rel="apple-touch-icon"
           sizes="1200x630"
-          href="/logos/stratools-stacked.png"
+          href="/logos/favicon.ico"
         />
         <link
           rel="apple-touch-icon"
           sizes="192x192"
-          href="/logos/logo-192x192.png"
+          href="/logos/favicon.ico"
         />
         <link
           rel="apple-touch-icon"
           sizes="512x512"
-          href="/logos/logo-512x512.png"
+          href="/logos/favicon.ico"
         />
 
         <link rel="manifest" href="/manifest.json" />

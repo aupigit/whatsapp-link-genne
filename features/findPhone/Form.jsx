@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { Container, Typography, Box, Chip, Paper } from "@mui/material";
-import { purple } from "@mui/material/colors";
-import { Add, AddLocation, ArrowDownward, LocationCity, MyLocation } from "@mui/icons-material";
-import TextField from "@mui/material/TextField";
+import { Container, Typography, Box, Paper, Grid, Card } from "@mui/material";
+import { ArrowDownward, MyLocation, Phone } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import MaskedInput from "./MaskedInput";
 import PageTitle from "../../components/common/PageTitle";
 import statesData from "./state.json";
-import { ArrowDown } from "phosphor-react";
 
 function getStateFromPhone(phone) {
   const phoneDigits = phone.replace(/[^\d]/g, "");
@@ -21,20 +18,21 @@ function getStateFromPhone(phone) {
 
 function App() {
   const [phone, setPhone] = useState("");
-  const [state, setState] = useState("");
-  const [showState, setShowState] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [resultMessage, setResultMessage] = useState("");
 
   const handlePhoneChange = (event) => {
     setPhone(event.target.value);
   };
 
   const handleButtonClick = () => {
-    setState(getStateFromPhone(phone));
-    setShowState(true);
+    const state = getStateFromPhone(phone);
+    const message =
+      state !== "Não encontrado" ? `O estado é ${state}` : "Telefone inválido";
+    setResultMessage(message);
+    setShowResult(true);
   };
-
   return (
-    
     <Container component="main">
       <PageTitle>Buscador de Estado pelo Número de Telefone</PageTitle>
       <Typography sx={{ my: 2 }}>
@@ -58,18 +56,35 @@ function App() {
           variant="outlined"
         />
 
-        <Button variant="contained" onClick={handleButtonClick} endIcon={<MyLocation/>} sx={{ mt: 2 }}>
-          Verificar estado
-        </Button>
-
-        {showState && state && (
-          <Typography variant="subtitle1" sx={{ mt: 3 }}>
-            <Chip
-              label={`O estado é: ${state}`}
-              sx={{ bgcolor: purple[700], width: "100%" }}
-            />
-          </Typography>
-        )}
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Button
+              variant="contained"
+              onClick={handleButtonClick}
+              endIcon={<MyLocation />}
+              sx={{ mt: 2, width: "100%" }}
+            >
+              Verificar estado
+            </Button>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            {showResult && (
+              <Card sx={{ mt: 3 }}>
+                <Box sx={{ bgcolor: "#4F6792", p: 1.2 }}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Phone sx={{ color: "common.white" }} />
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ color: "common.white" }}
+                    >
+                      {resultMessage}
+                    </Typography>
+                  </div>
+                </Box>
+              </Card>
+            )}
+          </Grid>
+        </Grid>
       </Paper>
     </Container>
   );

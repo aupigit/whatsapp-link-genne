@@ -1,34 +1,15 @@
 import React from "react";
 import Confetti from "react-confetti";
+import { confettiStyle } from "./confetti-style";
 
-const style = [
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-  "#5B21B6",
-  "#527dc6",
-];
-
-export default () => {
+export default function ConfettiComponent() {
   return (
     <Confetti
       width={3000}
-      height={1400}
-      numberOfPieces={40}
+      height={900}
+      numberOfPieces={140}
       tweenDuration={0.5}
-      colors={style}
+      colors={confettiStyle}
     />
   );
-};
+}

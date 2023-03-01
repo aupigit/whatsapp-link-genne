@@ -14,7 +14,7 @@ import { Box, Container, Paper, Typography } from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
 
 const Form = () => {
-  const [documentType, setDocumentType] = React.useState(DocumentType.CPF);
+  const [documentType, setDocumentType] = React.useState(DocumentType.CNPJ);
   const [document, setDocument] = React.useState("");
   const [mask, setMask] = React.useState(true);
 
@@ -28,8 +28,6 @@ const Form = () => {
     let doc = "";
 
     if (type === DocumentType.CNPJ) {
-      doc = onGenerateCNPJ(mask);
-    } else if (type === DocumentType.CNPJ) {
       doc = onGenerateCNPJ(mask);
     }
 
@@ -51,7 +49,6 @@ const Form = () => {
   return (
     <>
       <Container component="main">
-        {/* <VStack alignItems="stretch" spacing="4"> */}
         <PageTitle>Gerador de CNPJ</PageTitle>
         <Typography>Use números de CNPJ válidos em testes.</Typography>
         <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
@@ -74,7 +71,7 @@ const Form = () => {
             <HStack>
               <CopyButton text={document} />
               <MaskButton mask={mask} onClick={() => onToggleMask(!mask)} />
-              <GenerateButton onClick={() => onGenerate(documentType)} />
+              <GenerateButton icon={<ArrowsClockwise />} onClick={() => onGenerate(documentType)} />
             </HStack>
           </Box>
         </Paper>
@@ -82,5 +79,6 @@ const Form = () => {
     </>
   );
 };
+
 
 export default Form;

@@ -15,10 +15,10 @@ const globalTheme = createTheme({
             primary: '#fefefe',
         },
         primary: {
-            main: '#5b21b6',
+            main: '#527dc6',
         },
         icon: {
-            main: '#6214e1',
+            main: '#4F6792',
         },
     },
     typography: {
