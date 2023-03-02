@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import MaskedInput from "./MaskedInput";
 import PageTitle from "../../components/common/PageTitle";
 import statesData from "./state.json";
+import { blue } from "@mui/material/colors";
 
 function getStateFromPhone(phone) {
   const phoneDigits = phone.replace(/[^\d]/g, "");
@@ -70,7 +71,7 @@ function App() {
           <Grid item xs={12} sm={12}>
             {showResult && (
               <Card sx={{ mt: 3 }}>
-                <Box sx={{ bgcolor: "#4F6792", p: 1.2 }}>
+                <Box sx={{ bgcolor: blue[600], p: 1.2 }}>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Phone sx={{ color: "common.white" }} />
                     <Typography

@@ -1,5 +1,4 @@
 export const initialValues = {
-    qrCodeName: 'qr-code',
     websiteLink: 'https://aupi.com.br/',
     logoBackgroundTransparent: false,
     logoUpload: '',
@@ -7,11 +6,6 @@ export const initialValues = {
 }
 
 export const qrCodeInputs = [
-    {
-        label: 'QR Code Name',
-        name: 'qrCodeName',
-        placeholder: 'qr-code',
-    },
     {
         label: 'Link do Site',
         name: 'websiteLink',

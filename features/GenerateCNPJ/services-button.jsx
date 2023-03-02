@@ -12,7 +12,7 @@ const ServicesButton = ({ documentType, onGenerate }) => {
         isActive={documentType === DocumentType.CNPJ}
         onClick={() => onGenerate(DocumentType.CNPJ)}
       >
-        Gerar CNPJ
+        Gerar novo CNPJ
       </Button>
     </HStack>
   );

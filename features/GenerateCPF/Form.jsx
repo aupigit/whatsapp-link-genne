@@ -51,7 +51,7 @@ const Form = () => {
   return (
     <>
       <Container component="main">
-        <PageTitle>Gerador de CPF</PageTitle>
+        <PageTitle>Gerador CPF</PageTitle>
         <Typography
           sx={{
             marginTop: 2,

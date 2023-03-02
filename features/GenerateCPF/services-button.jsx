@@ -12,7 +12,7 @@ const ServicesButton = ({ documentType, onGenerate }) => {
         isActive={documentType === DocumentType.CPF}
         onClick={() => onGenerate(DocumentType.CPF)}
       >
-        Gerar CPF
+        Gerar novo CPF
       </Button>
     </HStack>
   );

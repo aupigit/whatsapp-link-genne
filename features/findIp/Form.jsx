@@ -44,7 +44,12 @@ const Form = () => {
           <Grid item>
             <Card>
               <Box sx={{ bgcolor: "#4F6792", p: 1.2 }}>
-                <Typography variant="body1">{ipDetails.ip}</Typography>
+                <Typography
+                  variant="h4"
+                  sx={{ color: purple[50], fontWeight: 700 }}
+                >
+                  {ipDetails.ip}
+                </Typography>
               </Box>
             </Card>
           </Grid>

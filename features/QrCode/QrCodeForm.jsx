@@ -47,6 +47,17 @@ const QrCodeForm = ({
               />
             ))}
           </Box>
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
+            <Box sx={{ mr: 1 }}>
+              <Button
+                variant="outlined"
+                onClick={() => setColorPickerOpen(false)}
+                aria-label="fechar"
+              >
+                Fechar
+              </Button>
+            </Box>
+          </Box>
         </Drawer>
 
         <Box
@@ -55,17 +66,6 @@ const QrCodeForm = ({
           autoComplete="off"
           sx={{ display: "flex", flexDirection: "column", gap: 3 }}
         >
-          <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 2 }}>
-            <Button
-              variant="filled"
-              onClick={() => setColorPickerOpen(true)}
-              aria-label="pallete"
-              endIcon={<Palette />}
-            >
-              Gerenciar Cores
-            </Button>
-          </Box>
-
           {qrCodeInputs.map((input) => (
             <TextField
               key={input.name}
@@ -81,6 +81,17 @@ const QrCodeForm = ({
               autoComplete="none"
             />
           ))}
+
+          <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 2 }}>
+            <Button
+              variant="contained"
+              onClick={() => setColorPickerOpen(true)}
+              aria-label="pallete"
+              endIcon={<Palette />}
+            >
+              Gerenciar Cores
+            </Button>
+          </Box>
 
           <LogoUpload
             logoBackgroundTransparent={values.logoBackgroundTransparent}
