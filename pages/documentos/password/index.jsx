@@ -25,7 +25,7 @@ const PasswordGenerator = () => {
       <SEO
         description=" Crie senhas fortes"
         title="Gerador de Senhas"
-        url="/generate/password"
+        url="/seguranca/password"
         imageUrl="/password-generator.png"
       />
 

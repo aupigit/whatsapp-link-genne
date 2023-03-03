@@ -17,7 +17,7 @@ import CardLinks from "../features/Home/CardLinks";
 import BottomMenu from "../components/layout/BottomMenu";
 
 const Home = () => {
-  const [screen, setScreen] = useState("generate");
+  const [screen, setScreen] = useState("utilitario");
 
   const handleScreen = (_, newScreen) => {
     setScreen(newScreen);

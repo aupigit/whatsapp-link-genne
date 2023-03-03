@@ -19,7 +19,7 @@ const TodoList = () => {
         <SEO
           description="Saiba o seu ip local"
           title="Meu IP"
-          url="/generate/find-ip"
+          url="/seguranca/find-ip"
           imageUrl="/todo-list.png"
         />
 
