@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@mui/material";
+import { Button, Hidden, Tooltip } from "@mui/material";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import { useState } from "react";
 
@@ -12,13 +12,9 @@ const CopyButton = ({ text }) => {
 
   return (
     <Tooltip title={copied ? "Copiado!" : "Copiar"}>
-      <Button
-      variant="contained"
-        aria-label="Copiar"
-        onClick={handleCopy}
-        endIcon={<FileCopyIcon />}
-      >
-        {copied ? "Copiado" : "Copiar"}
+      <Button aria-label="Copiar" onClick={handleCopy}>
+        <Hidden smDown>{copied ? "Copiado" : "Copiar"}</Hidden>
+        <Hidden mdUp>{<FileCopyIcon />}</Hidden>
       </Button>
     </Tooltip>
   );

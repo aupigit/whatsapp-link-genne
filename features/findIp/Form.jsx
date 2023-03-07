@@ -8,6 +8,7 @@ import {
   Grid,
   Paper,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
 import axios from "axios";
@@ -15,6 +16,7 @@ import { blue, purple } from "@mui/material/colors";
 
 const Form = () => {
   const [ipDetails, setIpDetails] = useState({});
+  const isLargeScreen = useMediaQuery("(min-width:600px)");
 
   useEffect(() => {
     axios.get("https://api.ipify.org?format=json").then((res) => {
@@ -45,7 +47,7 @@ const Form = () => {
             <Card>
               <Box sx={{ bgcolor: "#4F6792", p: 1.2 }}>
                 <Typography
-                  variant="h4"
+                  variant={isLargeScreen ? "h4" : "h6"}
                   sx={{ color: purple[50], fontWeight: 700 }}
                 >
                   {ipDetails.ip}
