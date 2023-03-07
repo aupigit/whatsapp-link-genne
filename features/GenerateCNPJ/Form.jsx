@@ -10,7 +10,13 @@ import AppIcon from "./app-icon";
 import AppButton, { GenerateButton, MaskButton } from "./app-button";
 import ServicesButton from "./services-button";
 import CopyButton from "./copy-button";
-import { Box, Container, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Paper,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import PageTitle from "../../components/common/PageTitle";
 
 const Form = () => {
@@ -45,7 +51,9 @@ const Form = () => {
       setDocument((document) => document.replace(/[^\d]/g, ""));
     }
   };
-
+  const isSmallerScreen = useMediaQuery((theme) =>
+    theme.breakpoints.down("sm")
+  );
   return (
     <>
       <Container component="main">
@@ -53,15 +61,8 @@ const Form = () => {
         <Typography>Use números de CNPJ válidos em testes.</Typography>
         <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
           <ServicesButton documentType={documentType} onGenerate={onGenerate} />
-
-          <Box
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Heading as="h2">{document}</Heading>
+          <Box sx={{ marginTop: 2, display: "flex", flexDirection: "column" }}>
+            <Heading as={isSmallerScreen ? "h3" : "h2"}>{document}</Heading>
           </Box>
           <Box
             sx={{
@@ -71,7 +72,10 @@ const Form = () => {
             <HStack>
               <CopyButton text={document} />
               <MaskButton mask={mask} onClick={() => onToggleMask(!mask)} />
-              <GenerateButton icon={<ArrowsClockwise />} onClick={() => onGenerate(documentType)} />
+              <GenerateButton
+                icon={<ArrowsClockwise />}
+                onClick={() => onGenerate(documentType)}
+              />
             </HStack>
           </Box>
         </Paper>
@@ -79,6 +83,5 @@ const Form = () => {
     </>
   );
 };
-
 
 export default Form;

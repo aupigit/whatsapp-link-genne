@@ -65,15 +65,8 @@ const Form = () => {
         </Typography>
         <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
           <ServicesButton documentType={documentType} onGenerate={onGenerate} />
-
-          <Box
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Heading as="h2">{document}</Heading>
+          <Box sx={{ marginTop: 2, display: "flex", flexDirection: "column" }}>
+            <Heading as={isSmallerScreen ? "h3" : "h2"}>{document}</Heading>
           </Box>
           <Box
             sx={{
