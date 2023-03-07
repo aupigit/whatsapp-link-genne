@@ -15,7 +15,7 @@ import { ArrowsClockwise, MaskHappy, MaskSad } from "phosphor-react";
 const MaskButton = ({ mask, onClick }) => {
   return (
     <Tooltip title={mask ? "Sem máscara" : "Com máscara"}>
-      <Button onClick={onClick} sx={{ mr: 1 }}>
+      <Button onClick={onClick} sx={{ mr: 1 }} variant="contained">
         <Hidden smDown>{mask ? "Sem máscara" : "Com máscara"}</Hidden>
         <Hidden mdUp>{mask ? <MasksOutlined /> : <MasksRounded />}</Hidden>
       </Button>
@@ -26,7 +26,7 @@ const MaskButton = ({ mask, onClick }) => {
 const GenerateButton = ({ onClick }) => {
   return (
     <Tooltip title="Gerar novo documento">
-      <Button onClick={onClick} sx={{ mr: 1 }}>
+      <Button onClick={onClick} sx={{ mr: 1 }} variant="contained">
         <Hidden smDown>{"Refazer"}</Hidden>
         <Hidden mdUp>{<Create />}</Hidden>
       </Button>

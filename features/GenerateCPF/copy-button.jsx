@@ -12,7 +12,7 @@ const CopyButton = ({ text }) => {
 
   return (
     <Tooltip title={copied ? "Copiado!" : "Copiar"}>
-      <Button aria-label="Copiar" onClick={handleCopy}>
+      <Button aria-label="Copiar" onClick={handleCopy} variant="contained">
         <Hidden smDown>{copied ? "Copiado" : "Copiar"}</Hidden>
         <Hidden mdUp>{<FileCopyIcon />}</Hidden>
       </Button>
