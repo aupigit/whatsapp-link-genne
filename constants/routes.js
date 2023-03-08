@@ -23,6 +23,75 @@ export const mainRoutes = [
   },
 ];
 
+export const allRoutes = [
+  {
+    path: "/documentos/cpf-generator",
+    name: "Gerador de CPF",
+    homeName: "Gerador de CPF",
+    key: "cpf-documentos",
+    icon: <BadgeOutlined />,
+    description: "Gerador de CPF",
+  },
+  {
+    path: "/documentos/cnpj-generator",
+    name: "Gerador de CNPJ",
+    homeName: "Gerador de CNPJ",
+    key: "cnpj-documentos",
+    icon: <ContactPageOutlined />,
+    description: "Gerador de CNPJ",
+  },
+  {
+    path: "/documentos/cpf-cnpj-validate",
+    name: "Validador de CPF e CNPJ",
+    homeName: "Validador de CPF e CNPJ",
+    key: "cpf-cnpj-validate",
+    icon: <FactCheck />,
+    description: "Validador de CPF e CNPJ",
+  },
+
+  {
+    path: "/securanca/find-ip",
+    name: "Descubra seu IP",
+    homeName: "Saiba seu IP",
+    key: "find-Ip",
+    icon: <FindInPage />,
+    description: "Descubra seu IP",
+  },
+  {
+    path: "/securanca/password",
+    name: "Gerador de Senhas",
+    homeName: "Gerador de Senhas",
+    key: "password-generator",
+    icon: <KeyIcon />,
+    description: "Crie Senhas Fortes",
+  },
+  {
+    path: "/comunicacao/find-phone",
+    name: "Qual o estado do telefone",
+    homeName: "Qual o estado do telefone",
+    key: "cpf-cnpj-validate",
+    icon: <Phone />,
+    description: "Qual o estado do telefone",
+  },
+
+  {
+    path: "/comunicacao/whatsapp-link",
+    name: "Link para Whatsapp",
+    homeName: "Gerador de Link para Whatsapp",
+    key: "todo-list",
+    icon: <WhatsappOutlined />,
+    description: "Crie seu Whatsapp Link.",
+  },
+  {
+    path: "/utilitario/qr-code",
+    name: "Gerador de QR Code",
+    homeName: "Gerador de QR code",
+    key: "qr-code-generator",
+    icon: <QrCodeIcon />,
+    description: "Crie seu QR code",
+  },
+];
+
 export const utilsRoutes = [
   {
     path: "/utilitario/qr-code",

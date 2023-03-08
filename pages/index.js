@@ -6,6 +6,7 @@ import {
   documentosRoutes,
   navItems,
   securityRoutes,
+  allRoutes,
 } from "../constants/routes";
 
 import { Typography } from "@mui/material";
@@ -17,7 +18,7 @@ import CardLinks from "../features/Home/CardLinks";
 import BottomMenu from "../components/layout/BottomMenu";
 
 const Home = () => {
-  const [screen, setScreen] = useState("documentos");
+  const [screen, setScreen] = useState("allRoutes");
 
   const handleScreen = (_, newScreen) => {
     setScreen(newScreen);
@@ -42,6 +43,7 @@ const Home = () => {
         handleScreen={handleScreen}
         navItems={navItems}
       >
+        {screen === "allRoutes" && <CardLinks routes={allRoutes} />}
         {screen === "comunicacao" && <CardLinks routes={comunicacaoRoutes} />}
         {screen === "documentos" && <CardLinks routes={documentosRoutes} />}
         {screen === "security" && <CardLinks routes={securityRoutes} />}
