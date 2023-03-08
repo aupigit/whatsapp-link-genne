@@ -12,7 +12,7 @@ import {
   TollOutlined,
   WhatsappOutlined,
 } from "@mui/icons-material";
-
+import TagIcon from "@mui/icons-material/Tag";
 export const mainRoutes = [
   {
     path: "/",
@@ -100,6 +100,14 @@ export const utilsRoutes = [
     key: "qr-code-generator",
     icon: <QrCodeIcon />,
     description: "Crie seu QR code",
+  },
+  {
+    path: "/utilitario/number-picker",
+    name: "Gerador de Números",
+    homeName: "Gerador de Números",
+    key: "number-picker-generator",
+    icon: <TagIcon />,
+    description: "Gere números aleatórios",
   },
 ];
 

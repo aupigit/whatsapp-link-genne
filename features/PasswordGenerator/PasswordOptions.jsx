@@ -12,7 +12,7 @@ const PasswordOptions = ({ values, handleChange }) => {
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend" sx={{ marginBottom: 2 }}>
-        Opções de senha{" "}
+        Opções de senha
       </FormLabel>
       <FormGroup sx={{ marginBottom: 4 }}>
         {passwordOptions.map((option) => (
