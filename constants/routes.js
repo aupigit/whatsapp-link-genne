@@ -90,6 +90,14 @@ export const allRoutes = [
     icon: <QrCodeIcon />,
     description: "Crie seu QR code",
   },
+  {
+    path: "/utilitario/number-picker",
+    name: "Gerador de Números",
+    homeName: "Gerador de Números",
+    key: "number-picker-generator",
+    icon: <TagIcon />,
+    description: "Gere números aleatórios",
+  },
 ];
 
 export const utilsRoutes = [
