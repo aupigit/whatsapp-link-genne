@@ -69,7 +69,9 @@ const Validator = () => {
                 </Alert>
               ) : (
                 <Alert severity="error" sx={{ width: "100%" }}>
-                  {inputValue.length === 0 ? "Documento inválido" : `${inputValue.length === 14 ? "CPF" : "CNPJ"} inválido`}
+                  {inputValue.length === 0
+                    ? "Documento inválido"
+                    : `${inputValue.length === 14 ? "CPF" : "CNPJ"} inválido`}
                 </Alert>
               )}
             </Box>
