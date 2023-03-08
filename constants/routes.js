@@ -102,11 +102,12 @@ export const securityRoutes = [
 
 export const navItems = [
   {
-    routes: utilsRoutes,
-    label: "Utilitarios",
-    value: "utils",
-    icon: <TollOutlined />,
+    routes: documentosRoutes,
+    label: "Documentos",
+    value: "documentos",
+    icon: <FactoryIcon />,
   },
+
   {
     routes: comunicacaoRoutes,
     label: "Comunicações",
@@ -114,15 +115,15 @@ export const navItems = [
     icon: <Phone />,
   },
   {
-    routes: documentosRoutes,
-    label: "Documentos",
-    value: "documentos",
-    icon: <FactoryIcon />,
-  },
-  {
     routes: securityRoutes,
     label: "Segurança",
     value: "security",
     icon: <Security />,
+  },
+  {
+    routes: utilsRoutes,
+    label: "Utilitarios",
+    value: "utils",
+    icon: <TollOutlined />,
   },
 ];

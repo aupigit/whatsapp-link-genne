@@ -1,6 +1,6 @@
 import { Button, Hidden, Tooltip } from "@mui/material";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
 import { useState } from "react";
+import { FileCopyOutlined, FileCopyRounded } from "@mui/icons-material";
 
 const CopyButton = ({ text }) => {
   const [copied, setCopied] = useState(false);
@@ -14,7 +14,9 @@ const CopyButton = ({ text }) => {
     <Tooltip title={copied ? "Copiado!" : "Copiar"}>
       <Button aria-label="Copiar" onClick={handleCopy} variant="contained">
         <Hidden smDown>{copied ? "Copiado" : "Copiar"}</Hidden>
-        <Hidden mdUp>{<FileCopyIcon />}</Hidden>
+        <Hidden mdUp>
+          {copied ? <FileCopyRounded /> : <FileCopyOutlined />}
+        </Hidden>
       </Button>
     </Tooltip>
   );

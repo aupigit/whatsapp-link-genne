@@ -1,14 +1,20 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
-import ErrorTitle from '../components/common/ErrorTitle'
+import ErrorTitle from "../components/common/ErrorTitle";
 
 const Custom404 = () => {
-    const router = useRouter()
-    return (
-        <>
-            <ErrorTitle errorCode='404' errorMessage='Page not found' errorFontSize={50} buttonText='Go back' buttonAction={() => router.back()} />
-        </>
-    )
-}
+  const router = useRouter();
+  return (
+    <>
+      <ErrorTitle
+        errorCode="404"
+        errorMessage="Página não encontrada"
+        errorFontSize={50}
+        buttonText="Voltar"
+        buttonAction={() => router.back()}
+      />
+    </>
+  );
+};
 
-export default Custom404
+export default Custom404;

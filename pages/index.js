@@ -17,7 +17,7 @@ import CardLinks from "../features/Home/CardLinks";
 import BottomMenu from "../components/layout/BottomMenu";
 
 const Home = () => {
-  const [screen, setScreen] = useState("utilitario");
+  const [screen, setScreen] = useState("documentos");
 
   const handleScreen = (_, newScreen) => {
     setScreen(newScreen);
@@ -25,12 +25,12 @@ const Home = () => {
   return (
     <>
       <SEO
-        description="List of tools to help speed web development."
+        description="Lista de ferramentas para ajudar a acelerar o desenvolvimento da web."
         title="Home"
         url="/"
       />
 
-      <PageTitle>Ferramentas pro seu dia a dia desenvolvido por aupi</PageTitle>
+      <PageTitle>Ferramentas pro seu dia a dia desenvolvido por Aupi</PageTitle>
 
       <Typography paragraph mb={5}>
         Lista de ferramentas para ajudar a acelerar o desenvolvimento pra você e

@@ -12,8 +12,8 @@ const Document = () => {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="PWA App" />
 
-        <meta name="theme-color" content="#5b21b6" />
-        <meta name="apple-mobile-web-app-status-bar" content="#5b21b6" />
+        <meta name="theme-color" content="#527dc6" />
+        <meta name="apple-mobile-web-app-status-bar" content="#527dc6" />
 
         <link rel="shortcut icon" href="/logos/favicon.ico" />
         <link rel="icon" href="/logos/favicon.ico" />
@@ -60,16 +60,6 @@ const Document = () => {
           href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Montserrat:wght@100;300;400;500;700&family=Roboto+Mono&display=swap"
           rel="stylesheet"
         />
-        {/* 
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        />
-
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
-          defer
-        /> */}
       </Head>
       <body>
         <Main />
