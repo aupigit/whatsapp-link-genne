@@ -8,7 +8,6 @@ import {
   Chip,
   Container,
   CssBaseline,
-  Grid,
   ListItem,
   ListItemAvatar,
   ListItemText,
@@ -74,48 +73,44 @@ const Form = () => {
             {urlState}
           </Typography>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Stack direction="row" spacing={1}>
+            <Box>
               <Button
-                sx={{ mb: 2 }}
+                sx={{ mt: 3, mb: 2 }}
                 className="btn waves-effect waves-light teal button-handler"
                 onClick={() => {
                   copyToClipboard(urlState);
                 }}
                 variant="contained"
                 endIcon={<ContentCopy />}
-                fullWidth
               >
                 {copyState}
               </Button>
-            </Grid>
-            <Grid item xs={12} sm={6}>
+            </Box>
+            <Box>
               <Button
-                sx={{ mb: 2 }}
+                sx={{ mt: 3, mb: 2 }}
                 className="btn waves-effect waves-light teal button-handler"
                 href={url}
                 target="a_blank"
                 endIcon={<WhatsApp />}
-                variant="contained"
-                fullWidth
+                variant="filled"
               >
                 Enviar no WhatsApp
               </Button>
-            </Grid>
-          </Grid>
+            </Box>{" "}
+          </Stack>
 
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-            <Button
-              sx={{ flex: "1", mr: 0 }}
-              onClick={() => {
-                clearAll();
-              }}
-              variant="contained"
-              endIcon={<Autorenew />}
-            >
-              Refazer
-            </Button>
-          </Box>
+          <Button
+            sx={{ mt: 1, mb: 2 }}
+            onClick={() => {
+              clearAll();
+            }}
+            variant="contained"
+            endIcon={<Autorenew />}
+          >
+            Refazer
+          </Button>
         </Paper>
 
         <Box
