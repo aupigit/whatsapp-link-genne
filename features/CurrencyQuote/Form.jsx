@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   FormControl,
+  Grid,
   InputLabel,
   MenuItem,
   Paper,
@@ -58,63 +59,81 @@ const CurrencyConverter = () => {
   };
 
   return (
-    <div>
-      <Paper elevation={3} sx={{ p: 3, mt: 5 }}>
-        <FormControl variant="outlined" sx={{ m: 1 }}>
-          <InputLabel id="de-label">De</InputLabel>
-          <Select
-            labelId="de-label"
-            id="de-select"
-            value={currencyInit}
-            onChange={handleChangeCurrencyInit}
-            label="De"
-          >
-            {moedas.map((moeda) => (
-              <MenuItem key={moeda} value={moeda}>
-                {moeda}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" sx={{ m: 1 }}>
-          <InputLabel id="para-label">Para</InputLabel>
-          <Select
-            labelId="para-label"
-            id="para-select"
-            value={currencyFinal}
-            onChange={handleChangeCurrencyFinal}
-            label="Para"
-          >
-            {moedas.map((moeda) => (
-              <MenuItem key={moeda} value={moeda}>
-                {moeda}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <TextField
-          id="standard-basic"
-          label="Valor"
-          variant="filled"
-          value={valor}
-          onChange={handleChangeValor}
-          sx={{ m: 1 }}
-        />
-        <Button
-          variant="contained"
-          onClick={handleConverter}
-          sx={{ mt: 1, ml: 1 }}
-        >
-          Converter
-        </Button>
-
-        {resultado && (
-          <Box mt={2}>
-            <Typography variant="body1">Resultado: {resultado}</Typography>
-          </Box>
-        )}
-      </Paper>
-    </div>
+    <Grid container spacing={2} justifyContent="flex-end">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Paper elevation={3} sx={{ p: 3, mb: 5 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={4}>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel id="de-label">De</InputLabel>
+                  <Select
+                    labelId="de-label"
+                    id="de-select"
+                    value={currencyInit}
+                    onChange={handleChangeCurrencyInit}
+                    label="De"
+                  >
+                    {moedas.map((moeda) => (
+                      <MenuItem key={moeda} value={moeda}>
+                        {moeda}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel id="para-label">Para</InputLabel>
+                  <Select
+                    labelId="para-label"
+                    id="para-select"
+                    value={currencyFinal}
+                    onChange={handleChangeCurrencyFinal}
+                    label="Para"
+                  >
+                    {moedas.map((moeda) => (
+                      <MenuItem key={moeda} value={moeda}>
+                        {moeda}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <FormControl fullWidth variant="outlined">
+                  <TextField
+                    id="outlined-number"
+                    label="Valor"
+                    value={valor}
+                    onChange={handleChangeValor}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                  />
+                </FormControl>
+              </Grid>
+            </Grid>
+            <Box mt={3}>
+              <Button variant="contained" onClick={handleConverter}>
+                Converter
+              </Button>
+            </Box>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Paper elevation={3} sx={{ p: 3, mb: 5 }}>
+            <Typography variant="h6" gutterBottom>
+              Resultado:
+            </Typography>
+            <Typography variant="h3" color="primary">
+              {resultado}
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

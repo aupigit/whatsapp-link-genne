@@ -8,29 +8,20 @@ import PageTitle from "../../../components/common/PageTitle";
 const TodoList = () => {
   return (
     <TodoStateProvider>
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <SEO
-          description="Converte Moeda"
-          title="Converte Moeda"
-          url="/picker/number"
-          imageUrl="/number-picker.png"
-        />
+      <SEO
+        description="Converte Moeda"
+        title="Converte Moeda"
+        url="/picker/number"
+        imageUrl="/number-picker.png"
+      />
 
-        <PageTitle>Conversor de Moedas | Todas Moedas</PageTitle>
+      <PageTitle>Conversor de Moedas | Todas Moedas</PageTitle>
 
-        <Typography paragraph mb={5}>
-          Converta todos os tipos de moedas
-        </Typography>
+      <Typography paragraph mb={5}>
+        Selecione as moedas e o valor a ser convertido:
+      </Typography>
 
-        <Screen />
-      </Box>
+      <Screen />
     </TodoStateProvider>
   );
 };

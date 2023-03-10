@@ -3,8 +3,11 @@ import KeyIcon from "@mui/icons-material/Key";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import FactoryIcon from "@mui/icons-material/Factory";
 import {
+  AttachMoney,
   BadgeOutlined,
   ContactPageOutlined,
+  CurrencyBitcoinTwoTone,
+  CurrencyExchange,
   FactCheck,
   FindInPage,
   Phone,
@@ -98,6 +101,14 @@ export const allRoutes = [
     icon: <TagIcon />,
     description: "Gere números aleatórios",
   },
+  {
+    path: "/utilitario/cotacao-moeda",
+    name: "Conversor de Moedas",
+    homeName: "Conversor de Moedas",
+    key: "number-conversor-moeda",
+    icon: <AttachMoney />,
+    description: "Converta moedas",
+  },
 ];
 
 export const utilsRoutes = [
@@ -116,6 +127,14 @@ export const utilsRoutes = [
     key: "number-picker-generator",
     icon: <TagIcon />,
     description: "Gere números aleatórios",
+  },
+  {
+    path: "/utilitario/cotacao-moeda",
+    name: "Conversor de Moedas",
+    homeName: "Conversor de Moedas",
+    key: "number-conversor-moeda",
+    icon: <AttachMoney />,
+    description: "Converta moedas",
   },
 ];
 
