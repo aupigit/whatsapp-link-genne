@@ -26,7 +26,7 @@ const TodoList = () => {
         <PageTitle>Conversor de Moedas | Todas Moedas</PageTitle>
 
         <Typography paragraph mb={5}>
-          Obtenha um número aleatório de um intervalo.
+          Converta todos os tipos de moedas
         </Typography>
 
         <Screen />
