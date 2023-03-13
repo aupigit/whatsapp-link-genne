@@ -8,15 +8,16 @@ import {
   InputLabel,
   MenuItem,
   Paper,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import { getCurrencyName } from "../../utilities/currencyUtils";
 
 const CurrencyConverter = () => {
   const [moedas, setMoedas] = useState([]);
-  const [currencyInit, setCurrencyInit] = useState("");
-  const [currencyFinal, setCurrencyFinal] = useState("");
+  const [currencyInit, setCurrencyInit] = useState(null);
+  const [currencyFinal, setCurrencyFinal] = useState(null);
   const [valor, setValor] = useState("");
   const [resultado, setResultado] = useState("");
 
@@ -25,9 +26,13 @@ const CurrencyConverter = () => {
       .get("https://api.exchangerate-api.com/v4/latest/USD")
       .then((response) => {
         const currencyArray = Object.keys(response.data.rates);
-        setMoedas(currencyArray);
-        setCurrencyInit("USD");
-        setCurrencyFinal(currencyArray[0]);
+        setMoedas(
+          currencyArray.map((currency) => ({
+            name: currency,
+            label: `${currency} (${getCurrencyName(currency)})`,
+            currency: getCurrencyName(currency),
+          }))
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -36,13 +41,13 @@ const CurrencyConverter = () => {
 
   const handleConverter = () => {
     axios
-      .get(`https://api.exchangerate-api.com/v4/latest/${currencyInit}`)
+      .get(`https://api.exchangerate-api.com/v4/latest/${currencyInit.name}`)
       .then((response) => {
-        const rate = response.data.rates[currencyFinal];
+        const rate = response.data.rates[currencyFinal.name];
         setResultado(
           (valor * rate).toLocaleString("pt-br", {
             style: "currency",
-            currency: currencyFinal,
+            currency: currencyFinal.name,
           })
         );
       })
@@ -51,12 +56,12 @@ const CurrencyConverter = () => {
       });
   };
 
-  const handleChangeCurrencyInit = (event) => {
-    setCurrencyInit(event.target.value);
+  const handleChangeCurrencyInit = (event, value) => {
+    setCurrencyInit(value);
   };
 
-  const handleChangeCurrencyFinal = (event) => {
-    setCurrencyFinal(event.target.value);
+  const handleChangeCurrencyFinal = (event, value) => {
+    setCurrencyFinal(value);
   };
 
   const handleChangeValor = (event) => {
@@ -70,61 +75,63 @@ const CurrencyConverter = () => {
           <Paper elevation={3} sx={{ p: 3, mb: 5 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel id="de-label">De</InputLabel>
-                  <Select
-                    labelId="de-label"
-                    id="de-select"
-                    value={currencyInit}
-                    onChange={handleChangeCurrencyInit}
-                    label="De"
-                  >
-                    {moedas.map((moeda) => (
-                      <MenuItem key={moeda} value={moeda}>
-                        {moeda}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                <Autocomplete
+                  id="de-select"
+                  options={moedas}
+                  getOptionLabel={(option) =>
+                    option.currency && option.name
+                      ? `${option.name} (${option.currency})`
+                      : option.name
+                  }
+                  onChange={handleChangeCurrencyInit}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="De:"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  )}
+                />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel id="para-label">Para</InputLabel>
-                  <Select
-                    labelId="para-label"
-                    id="para-select"
-                    value={currencyFinal}
-                    onChange={handleChangeCurrencyFinal}
-                    label="Para"
-                  >
-                    {moedas.map((moeda) => (
-                      <MenuItem key={moeda} value={moeda}>
-                        {moeda}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                <Autocomplete
+                  id="para-select"
+                  options={moedas}
+                  getOptionLabel={(option) =>
+                    option.currency && option.name
+                      ? `${option.name} (${option.currency})`
+                      : option.name
+                  }
+                  onChange={handleChangeCurrencyFinal}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Para:"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  )}
+                />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <FormControl fullWidth variant="outlined">
-                  <TextField
-                    id="outlined-number"
-                    label="Valor"
-                    value={valor}
-                    onChange={handleChangeValor}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    variant="outlined"
-                  />
-                </FormControl>
+                <TextField
+                  id="valor"
+                  label="Valor"
+                  variant="outlined"
+                  onChange={handleChangeValor}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleConverter}
+                >
+                  Converter
+                </Button>
               </Grid>
             </Grid>
-            <Box mt={3}>
-              <Button variant="contained" onClick={handleConverter}>
-                Converter
-              </Button>
-            </Box>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6}>
