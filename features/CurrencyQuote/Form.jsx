@@ -39,7 +39,12 @@ const CurrencyConverter = () => {
       .get(`https://api.exchangerate-api.com/v4/latest/${currencyInit}`)
       .then((response) => {
         const rate = response.data.rates[currencyFinal];
-        setResultado((valor * rate).toFixed(2));
+        setResultado(
+          (valor * rate).toLocaleString("pt-br", {
+            style: "currency",
+            currency: currencyFinal,
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
