@@ -21,7 +21,7 @@ const NumberOptions = ({
                 values.total > 1 ? "s" : ""
               } que ${values.total > 1 ? "são" : "é"} ${
                 values.unique ? "Único" : "não único"
-              } and ${values.sorted ? "Ordenado" : "não ordenado"}.`
+              } e ${values.sorted ? "Ordenado" : "não ordenado"}.`
             : "Não haverá resultados."
         }
       >

@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { getCurrencyName } from "../../utilities/currencyUtils";
 
