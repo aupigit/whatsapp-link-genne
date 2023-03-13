@@ -40,6 +40,13 @@ const CurrencyConverter = () => {
   }, []);
 
   const handleConverter = () => {
+    if (!currencyInit || !currencyFinal) {
+      alert(
+        "Por favor, selecione as moedas de origem e destino antes de converter."
+      );
+      return;
+    }
+
     axios
       .get(`https://api.exchangerate-api.com/v4/latest/${currencyInit.name}`)
       .then((response) => {
