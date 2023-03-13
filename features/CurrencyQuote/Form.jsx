@@ -135,6 +135,23 @@ const CurrencyConverter = () => {
             <Typography variant="h3" color="primary">
               {resultado}
             </Typography>
+            {resultado !== "" && (
+              <Box
+                sx={{
+                  mt: 2,
+                  p: 2,
+                  bgcolor: "error.main",
+                  color: "error.contrastText",
+                  borderRadius: 1,
+                }}
+              >
+                <Typography variant="subtitle1" align="center">
+                  ATENÇÃO: Os valores exibidos podem não ser precisos ou
+                  atualizados devido a possíveis variações na API ou fechamento
+                  do mercado local.
+                </Typography>
+              </Box>
+            )}
           </Paper>
         </Grid>
       </Grid>
