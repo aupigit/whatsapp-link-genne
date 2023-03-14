@@ -25,7 +25,6 @@ import NavItem from "./NavItem";
 import Footer from "./Footer";
 import FeedBackToggle from "../common/Feedback";
 import { UserbackProvider } from "@userback/react";
-
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -184,7 +183,7 @@ const Layout = ({ children }) => {
             }}
           >
             {/* <Footer /> */}
-            {/* <FeedBackToggle /> */}
+
             <>{children}</>
           </Container>
         </Box>
