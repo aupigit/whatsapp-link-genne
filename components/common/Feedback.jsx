@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -18,6 +18,7 @@ import {
   Snackbar,
   Typography,
 } from "@mui/material";
+import emailjs from "@emailjs/browser";
 
 const theme = createTheme({
   palette: {
@@ -25,7 +26,7 @@ const theme = createTheme({
       main: "#1976d2",
     },
     background: {
-      default: "#000",
+      default: "#fff",
     },
   },
 });
@@ -42,6 +43,7 @@ const FeedbackModal = styled(Modal)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  color: "#000",
 });
 
 const ModalContainer = styled("div")({
@@ -51,58 +53,51 @@ const ModalContainer = styled("div")({
   outline: "none",
 });
 
-const FeedbackForm = ({ onSubmit }) => {
-  const [feedback, setFeedback] = useState("");
-  const [type, setType] = useState("");
+const FeedbackForm = ({ onClose }) => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch("http://localhost:5174/feedbacks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ feedback, type }),
-    });
-    if (response.ok) {
-      setOpenSnackbar(true);
-      // onSubmit(); // chama a função onSubmit definida em FeedbackButtonModal
-    }
-  };
-
-  const handleChange = (event) => {
-    setFeedback(event.target.value);
-  };
-
-  const handleTypeChange = (event) => {
-    setType(event.target.value);
-  };
+  const form = useRef();
 
   const handleSnackbarClose = () => {
     setOpenSnackbar(false);
   };
 
+  const sendEmail = (e) => {
+    e.preventDefault(); // prevents the page from reloading when you hit “Send”
+
+    emailjs
+      .sendForm(
+        "service_po4i0lq",
+        "template_bh05x9j",
+        form.current,
+        "5tHrtJW8RbpwtZGcP"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    setOpenSnackbar(true);
+    // onClose();
+  };
+
   return (
-    <Box>
-      <form onSubmit={handleSubmit}>
+    <form ref={form} onSubmit={sendEmail}>
+      <Box>
         <TextField
           sx={{ mt: 2 }}
           label="Digite aqui seu feedback"
           multiline
           rows={4}
-          value={feedback}
-          onChange={handleChange}
+          name="feedback"
           fullWidth
           required
         />
         <FormControl fullWidth sx={{ mt: 2 }}>
           <InputLabel>Tipo de feedback</InputLabel>
-          <Select
-            value={type}
-            label="Tipo de feedback"
-            onChange={handleTypeChange}
-          >
+          <Select name="type" label="Tipo de feedback">
             <MenuItem value="bug">
               <BugReport sx={{ mr: 1 }} />
               Bug
@@ -121,56 +116,49 @@ const FeedbackForm = ({ onSubmit }) => {
             </MenuItem>
           </Select>
         </FormControl>
-        <Button type="submit" variant="contained" sx={{ mt: 2 }}>
-          Enviar
+        <Button sx={{ mt: 2 }} type="submit" variant="contained">
+          Enviar feedback
         </Button>
-      </form>
+        <Button variant="outlined" onClick={onClose} sx={{ ml: 2, mt: 2 }}>
+          Fechar
+        </Button>
+      </Box>
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
         onClose={handleSnackbarClose}
         message="Feedback enviado com sucesso!"
       />
-    </Box>
+    </form>
   );
 };
 
-const FeedbackButtonModal = () => {
+const Feedback = () => {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleModalOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleModalClose = () => {
     setOpen(false);
   };
 
   return (
-    <>
-      <FeedbackButton onClick={handleOpen}>Enviar feedback</FeedbackButton>
-      <FeedbackModal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="feedback-modal-title"
-        aria-describedby="feedback-modal-description"
-      >
+    <ThemeProvider theme={theme}>
+      <FeedbackButton onClick={handleModalOpen} endIcon={<EmojiObjects />}>
+        Enviar feedback
+      </FeedbackButton>
+      <FeedbackModal open={open} onClose={handleModalClose}>
         <ModalContainer>
-          <Typography variant="h2" id="feedback-modal-title">
-            Enviar feedback
+          <Typography variant="h5" sx={{ mb: 2 }}>
+            Envie seu feedback
           </Typography>
-          <Typography variant="body1" id="feedback-modal-description">
-            Use o campo abaixo para enviar feedback sobre ideias, críticas ou
-            bugs.
-          </Typography>
-          <FeedbackForm onSubmit={handleClose} />
-          <Button variant="outlined" onClick={handleClose} sx={{ mt: 2 }}>
-            Fechar
-          </Button>
+          <FeedbackForm onClose={handleModalClose} />
         </ModalContainer>
       </FeedbackModal>
-    </>
+    </ThemeProvider>
   );
 };
 
-export default FeedbackButtonModal;
+export default Feedback;

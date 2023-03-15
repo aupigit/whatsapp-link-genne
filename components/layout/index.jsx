@@ -183,7 +183,7 @@ const Layout = ({ children }) => {
             }}
           >
             {/* <Footer /> */}
-
+            <FeedBackToggle />
             <>{children}</>
           </Container>
         </Box>
