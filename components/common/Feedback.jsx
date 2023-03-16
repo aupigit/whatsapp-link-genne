@@ -1,24 +1,19 @@
 import React, { useRef, useState } from "react";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { createTheme, styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import { Avatar, Box, Snackbar, Typography } from "@mui/material";
+import { Card, CardHeader, IconButton } from "@mui/material";
 import {
   EmojiObjects,
-  BugReport,
-  SentimentVeryDissatisfied,
   SentimentVerySatisfied,
+  BugReportOutlined,
+  EmojiObjectsOutlined,
 } from "@mui/icons-material";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Snackbar,
-  Typography,
-} from "@mui/material";
 import emailjs from "@emailjs/browser";
+import Image from "next/image";
+import logo from "../../public/logos/logo.png";
 
 const theme = createTheme({
   palette: {
@@ -26,7 +21,7 @@ const theme = createTheme({
       main: "#1976d2",
     },
     background: {
-      default: "#fff",
+      default: "#333333",
     },
   },
 });
@@ -44,6 +39,19 @@ const FeedbackModal = styled(Modal)({
   alignItems: "center",
   justifyContent: "center",
   color: "#000",
+  "& .MuiPaper-root": {
+    width: "100%",
+    maxWidth: "none",
+  },
+});
+
+const ModalFirst = styled("div")({
+  backgroundColor: theme.palette.background.default,
+  borderRadius: "5px",
+  padding: "50px",
+  outline: "none",
+  width: "100%",
+  height: "100%",
 });
 
 const ModalContainer = styled("div")({
@@ -51,9 +59,10 @@ const ModalContainer = styled("div")({
   borderRadius: "5px",
   padding: "20px",
   outline: "none",
+  width: "32.5%",
+  height: "37.5%",
 });
-
-const FeedbackForm = ({ onClose }) => {
+const FeedbackForm = ({ onClose, cardTitle }) => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const form = useRef();
 
@@ -62,8 +71,7 @@ const FeedbackForm = ({ onClose }) => {
   };
 
   const sendEmail = (e) => {
-    e.preventDefault(); // prevents the page from reloading when you hit “Send”
-
+    e.preventDefault();
     emailjs
       .sendForm(
         "service_po4i0lq",
@@ -80,84 +88,176 @@ const FeedbackForm = ({ onClose }) => {
         }
       );
     setOpenSnackbar(true);
-    // onClose();
+    onClose();
   };
-
   return (
     <form ref={form} onSubmit={sendEmail}>
+      <Box sx={{ textAlign: "center", mb: 1 }}>
+        <Image
+          src={logo}
+          alt="Logo azul da empresa aupi"
+          width={90}
+          height={35}
+        />
+
+        <Typography
+          sx={{
+            color: "#f2f2f2",
+            textAlign: "center",
+          }}
+          variant="subtitle2"
+        >
+          Diga-nos o que está faltando ou o que você gostaria de ver no site.
+        </Typography>
+      </Box>
       <Box>
         <TextField
           sx={{ mt: 2 }}
-          label="Digite aqui seu feedback"
+          label="Adicione um título"
+          rows={4}
+          name="title"
+          fullWidth
+          required
+        />
+        <TextField
+          sx={{ mt: 2 }}
+          label={`Digite aqui seu feedback para ${cardTitle}`}
           multiline
           rows={4}
           name="feedback"
           fullWidth
           required
         />
-        <FormControl fullWidth sx={{ mt: 2 }}>
-          <InputLabel>Tipo de feedback</InputLabel>
-          <Select name="type" label="Tipo de feedback">
-            <MenuItem value="bug">
-              <BugReport sx={{ mr: 1 }} />
-              Bug
-            </MenuItem>
-            <MenuItem value="ideia">
-              <EmojiObjects sx={{ mr: 1 }} />
-              Ideia
-            </MenuItem>
-            <MenuItem value="critica">
-              <SentimentVeryDissatisfied sx={{ mr: 1 }} />
-              Crítica
-            </MenuItem>
-            <MenuItem value="elogio">
-              <SentimentVerySatisfied sx={{ mr: 1 }} />
-              Elogio
-            </MenuItem>
-          </Select>
-        </FormControl>
-        <Button sx={{ mt: 2 }} type="submit" variant="contained">
-          Enviar feedback
-        </Button>
-        <Button variant="outlined" onClick={onClose} sx={{ ml: 2, mt: 2 }}>
-          Fechar
-        </Button>
+        <input type="hidden" name="type" value={cardTitle} />
+        <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 1 }}>
+          <Button
+            variant="contained"
+            sx={{ mt: 2 }}
+            color="primary"
+            type="submit"
+          >
+            Enviar
+          </Button>
+          <Button variant="outlined" sx={{ ml: 2, mt: 2 }} onClick={onClose}>
+            Cancelar
+          </Button>
+        </Box>
       </Box>
       <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
         open={openSnackbar}
-        autoHideDuration={3000}
+        autoHideDuration={5000}
         onClose={handleSnackbarClose}
         message="Feedback enviado com sucesso!"
+        action={
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleSnackbarClose}
+          >
+            <SentimentVerySatisfied fontSize="small" />
+          </IconButton>
+        }
       />
     </form>
+  );
+};
+
+const FeedbackCard = ({ cardTitle, cardIcon }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  let icon;
+  if (cardIcon === "report") {
+    icon = <BugReportOutlined />;
+  } else if (cardIcon === "request") {
+    icon = <EmojiObjectsOutlined />;
+  }
+
+  return (
+    <>
+      <Card
+        variant="filled"
+        onClick={handleOpen}
+        sx={{
+          "&:hover": {
+            boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)",
+            backgroundColor: "#404040",
+          },
+          backgroundColor: "#333333",
+          cursor: "pointer",
+          transition: "all 0.5s ease",
+          width: "100%",
+        }}
+      >
+        <CardHeader
+          avatar={<Avatar>{icon}</Avatar>}
+          title={cardTitle}
+          subheader="Deixe aqui seu feedback"
+        />
+      </Card>
+
+      <FeedbackModal open={open} onClose={handleClose}>
+        <ModalContainer>
+          <FeedbackForm
+            onClose={handleClose}
+            cardTitle={cardTitle}
+            cardIcon={cardIcon}
+          />
+        </ModalContainer>
+      </FeedbackModal>
+    </>
   );
 };
 
 const Feedback = () => {
   const [open, setOpen] = useState(false);
 
-  const handleModalOpen = () => {
+  const handleOpen = () => {
     setOpen(true);
   };
 
-  const handleModalClose = () => {
+  const handleClose = () => {
     setOpen(false);
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <FeedbackButton onClick={handleModalOpen} endIcon={<EmojiObjects />}>
+    <div>
+      <FeedbackButton onClick={handleOpen} endIcon={<EmojiObjects />}>
         Enviar feedback
       </FeedbackButton>
-      <FeedbackModal open={open} onClose={handleModalClose}>
-        <ModalContainer>
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            Envie seu feedback
-          </Typography>
-          <FeedbackForm onClose={handleModalClose} />
-        </ModalContainer>
+      <FeedbackModal open={open} onClose={handleClose}>
+        <div>
+          <ModalFirst>
+            <Box sx={{ textAlign: "center", mb: 5 }}>
+              <Image
+                src={logo}
+                alt="Logo azul da empresa aupi"
+                width={90}
+                height={35}
+              />
+            </Box>
+            <FeedbackCard cardTitle="Reportar um erro" cardIcon="report" />
+            <br />
+            <FeedbackCard
+              cardTitle="Solicitação de recurso"
+              cardIcon="request"
+            />
+          </ModalFirst>
+        </div>
       </FeedbackModal>
-    </ThemeProvider>
+    </div>
   );
 };
 

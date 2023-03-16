@@ -22,9 +22,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import AppBarLogo from "./AppBarLogo";
 import NavItem from "./NavItem";
-import Footer from "./Footer";
 import FeedBackToggle from "../common/Feedback";
-import { UserbackProvider } from "@userback/react";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -101,94 +99,92 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <UserbackProvider token="39625|78946|vYzSqV39nOKb9mcIGLyaifz5S">
-      <Box
-        sx={{
-          minHeight: "100vh",
-          paddingTop: "65px",
-          paddingLeft: {
-            xs: "57px",
-            sm: "65px",
-            md: open ? "240px" : "65px",
-          },
-        }}
-      >
-        <CssBaseline />
-        <AppBar position="fixed" open={open}>
-          <Toolbar sx={{ height: "64px" }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                marginRight: 5,
-                ...(open && { display: "none" }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <AppBarLogo logoSize={38} textSize={24} open={open} />
-          </Toolbar>
-        </AppBar>
-
-        <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
-            <AppBarLogo logoSize={28} textSize={23} />
-
-            <IconButton aria-label="toggle menu" onClick={handleDrawerOpen}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <NavItem
-            router={router}
-            routes={mainRoutes}
-            open={open}
-            setOpen={setOpen}
-            label={mainRoutes[0].name}
-            isHomePage
-          />
-
-          {navItems.map((navItem, index) => (
-            <NavItem
-              key={index}
-              router={router}
-              routes={navItem.routes}
-              open={open}
-              setOpen={setOpen}
-              label={navItem.label}
-            />
-          ))}
-        </Drawer>
-
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-          }}
-        >
-          <Container
+    <Box
+      sx={{
+        minHeight: "100vh",
+        paddingTop: "65px",
+        paddingLeft: {
+          xs: "57px",
+          sm: "65px",
+          md: open ? "240px" : "65px",
+        },
+      }}
+    >
+      <CssBaseline />
+      <AppBar position="fixed" open={open}>
+        <Toolbar sx={{ height: "64px" }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
             sx={{
-              minHeight: "calc(100vh - 65px)",
-              marginInline: 0,
-              padding: {
-                xs: 3,
-                sm: 4,
-                md: 5,
-              },
+              marginRight: 5,
+              ...(open && { display: "none" }),
             }}
           >
-            {/* <Footer /> */}
-            <FeedBackToggle />
-            <>{children}</>
-          </Container>
-        </Box>
+            <MenuIcon />
+          </IconButton>
+          <AppBarLogo logoSize={38} textSize={24} open={open} />
+        </Toolbar>
+      </AppBar>
+
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader>
+          <AppBarLogo logoSize={28} textSize={23} />
+
+          <IconButton aria-label="toggle menu" onClick={handleDrawerOpen}>
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <NavItem
+          router={router}
+          routes={mainRoutes}
+          open={open}
+          setOpen={setOpen}
+          label={mainRoutes[0].name}
+          isHomePage
+        />
+
+        {navItems.map((navItem, index) => (
+          <NavItem
+            key={index}
+            router={router}
+            routes={navItem.routes}
+            open={open}
+            setOpen={setOpen}
+            label={navItem.label}
+          />
+        ))}
+      </Drawer>
+
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+        }}
+      >
+        <Container
+          sx={{
+            minHeight: "calc(100vh - 65px)",
+            marginInline: 0,
+            padding: {
+              xs: 3,
+              sm: 4,
+              md: 5,
+            },
+          }}
+        >
+          <FeedBackToggle />
+          <br />
+          <>{children}</>
+        </Container>
       </Box>
-    </UserbackProvider>
+    </Box>
   );
 };
 
