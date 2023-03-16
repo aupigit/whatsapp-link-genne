@@ -23,6 +23,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AppBarLogo from "./AppBarLogo";
 import NavItem from "./NavItem";
 import FeedBackToggle from "../common/Feedback";
+import Modal from "../common/AboutModal";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({

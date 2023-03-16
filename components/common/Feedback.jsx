@@ -3,13 +3,32 @@ import { createTheme, styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import { Avatar, Box, Snackbar, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Divider,
+  Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Snackbar,
+  Typography,
+} from "@mui/material";
 import { Card, CardHeader, IconButton } from "@mui/material";
 import {
   EmojiObjects,
   SentimentVerySatisfied,
   BugReportOutlined,
   EmojiObjectsOutlined,
+  Phone,
+  Email,
+  Facebook,
+  Instagram,
+  Public,
+  ContactPage,
+  ContactPageOutlined,
+  Info,
 } from "@mui/icons-material";
 import emailjs from "@emailjs/browser";
 import Image from "next/image";
@@ -29,6 +48,7 @@ const theme = createTheme({
 const FeedbackButton = styled(Button)({
   color: theme.palette.background.default,
   backgroundColor: theme.palette.primary.main,
+  color: "#f2f2f2",
   "&:hover": {
     backgroundColor: "#1565c0",
   },
@@ -60,7 +80,7 @@ const ModalContainer = styled("div")({
   padding: "20px",
   outline: "none",
   width: "32.5%",
-  height: "37.5%",
+  height: "47.5%",
 });
 const FeedbackForm = ({ onClose, cardTitle }) => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -195,6 +215,7 @@ const FeedbackCard = ({ cardTitle, cardIcon }) => {
             boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)",
             backgroundColor: "#404040",
           },
+          marginTop: "1rem",
           backgroundColor: "#333333",
           cursor: "pointer",
           transition: "all 0.5s ease",
@@ -221,6 +242,134 @@ const FeedbackCard = ({ cardTitle, cardIcon }) => {
   );
 };
 
+const ContatoCard = ({ cardTitle, cardIcon }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Card
+        variant="filled"
+        onClick={handleOpen}
+        sx={{
+          "&:hover": {
+            boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)",
+            backgroundColor: "#404040",
+          },
+          marginTop: "1rem",
+          backgroundColor: "#333333",
+          cursor: "pointer",
+          transition: "all 0.5s ease",
+          width: "100%",
+        }}
+      >
+        <CardHeader
+          avatar={<Avatar>{<ContactPageOutlined />}</Avatar>}
+          title={cardTitle}
+          subheader="Informações de contato"
+        />
+      </Card>
+
+      <FeedbackModal open={open} onClose={handleClose}>
+        <ModalContainer>
+          <ContatoForm cardTitle={cardTitle} cardIcon={cardIcon} />
+        </ModalContainer>
+      </FeedbackModal>
+    </>
+  );
+};
+function ContatoForm() {
+  return (
+    <>
+      <Typography
+        sx={{
+          color: "#f2f2f2",
+          textAlign: "center",
+        }}
+        variant="h4"
+      >
+        Contatos Aupi
+      </Typography>
+
+      <List>
+        <ListItem>
+          <ListItemIcon>
+            <Phone />
+          </ListItemIcon>
+          <ListItemText
+            sx={{
+              color: "#f2f2f2",
+            }}
+            primary="(47) 4101-1253"
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Email />
+          </ListItemIcon>
+          <ListItemText
+            sx={{
+              color: "#f2f2f2",
+            }}
+            primary="contato@aupi.com.br"
+          />
+        </ListItem>
+        <Divider />
+        <ListItem>
+          <ListItemIcon>
+            <Facebook />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Link
+                href="https://www.facebook.com/aupisolucoes"
+                target="_blank"
+                rel="noopener"
+              >
+                facebook.com/aupisolucoes
+              </Link>
+            }
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Instagram />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Link
+                href="https://www.instagram.com/aupisolucoes"
+                target="_blank"
+                rel="noopener"
+              >
+                @aupisolucoes
+              </Link>
+            }
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Public />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Link href="https://aupi.com.br" target="_blank" rel="noopener">
+                aupi.com.br
+              </Link>
+            }
+          />
+        </ListItem>
+      </List>
+    </>
+  );
+}
 const Feedback = () => {
   const [open, setOpen] = useState(false);
 
@@ -234,26 +383,28 @@ const Feedback = () => {
 
   return (
     <div>
-      <FeedbackButton onClick={handleOpen} endIcon={<EmojiObjects />}>
-        Enviar feedback
+      <FeedbackButton onClick={handleOpen} endIcon={<Info />}>
+        Feedback | Contato
       </FeedbackButton>
       <FeedbackModal open={open} onClose={handleClose}>
         <div>
           <ModalFirst>
-            <Box sx={{ textAlign: "center", mb: 5 }}>
+            <Box sx={{ textAlign: "center", mb: 3 }}>
               <Image
                 src={logo}
                 alt="Logo azul da empresa aupi"
                 width={90}
-                height={35}
+                height={40}
               />
             </Box>
             <FeedbackCard cardTitle="Reportar um erro" cardIcon="report" />
-            <br />
+
             <FeedbackCard
               cardTitle="Solicitação de recurso"
               cardIcon="request"
             />
+
+            <ContatoCard cardTitle="Entre em contato" cardIcon="contact" />
           </ModalFirst>
         </div>
       </FeedbackModal>
