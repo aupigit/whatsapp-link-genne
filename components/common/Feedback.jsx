@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import {
   Avatar,
   Box,
+  CircularProgress,
   Divider,
   Link,
   List,
@@ -29,6 +30,8 @@ import {
   ContactPage,
   ContactPageOutlined,
   Info,
+  ClosedCaption,
+  Close,
 } from "@mui/icons-material";
 import emailjs from "@emailjs/browser";
 import Image from "next/image";
@@ -83,15 +86,14 @@ const ModalContainer = styled("div")({
   height: "47.5%",
 });
 const FeedbackForm = ({ onClose, cardTitle }) => {
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [feedbackSent, setFeedbackSent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const form = useRef();
-
-  const handleSnackbarClose = () => {
-    setOpenSnackbar(false);
-  };
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true);
+
     emailjs
       .sendForm(
         "service_po4i0lq",
@@ -102,14 +104,15 @@ const FeedbackForm = ({ onClose, cardTitle }) => {
       .then(
         (result) => {
           console.log(result.text);
+          setFeedbackSent(true);
         },
         (error) => {
           console.log(error.text);
         }
-      );
-    setOpenSnackbar(true);
-    onClose();
+      )
+      .finally(() => setLoading(false));
   };
+
   return (
     <form ref={form} onSubmit={sendEmail}>
       <Box sx={{ textAlign: "center", mb: 1 }}>
@@ -155,34 +158,41 @@ const FeedbackForm = ({ onClose, cardTitle }) => {
             sx={{ mt: 2 }}
             color="primary"
             type="submit"
+            disabled={loading}
           >
-            Enviar
+            {loading ? (
+              <CircularProgress size={24} sx={{ color: "#fff" }} />
+            ) : (
+              "Enviar"
+            )}
           </Button>
           <Button variant="outlined" sx={{ ml: 2, mt: 2 }} onClick={onClose}>
             Cancelar
           </Button>
         </Box>
       </Box>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        open={openSnackbar}
-        autoHideDuration={5000}
-        onClose={handleSnackbarClose}
-        message="Feedback enviado com sucesso!"
-        action={
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={handleSnackbarClose}
-          >
-            <SentimentVerySatisfied fontSize="small" />
-          </IconButton>
-        }
-      />
+      {feedbackSent && (
+        <Box sx={{ mt: 2 }}>
+          <Snackbar
+            open={feedbackSent}
+            autoHideDuration={6000}
+            onClose={() => setFeedbackSent(false)}
+            message="Feedback enviado com sucesso!"
+            action={
+              <React.Fragment>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={() => setFeedbackSent(false)}
+                >
+                  <Close fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
+        </Box>
+      )}
     </form>
   );
 };
@@ -394,7 +404,7 @@ const Feedback = () => {
                 src={logo}
                 alt="Logo azul da empresa aupi"
                 width={90}
-                height={40}
+                height={32}
               />
             </Box>
             <FeedbackCard cardTitle="Reportar um erro" cardIcon="report" />
