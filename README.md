@@ -4,6 +4,12 @@ Ferramentas para facilitar a vida das pessoas, sendo elas desenvolvedoras ou nã
 ## Para Executar
 Para executar o aplicativo, você pode usar os seguintes comandos.
 
+- Para começar clone o repositorio:
+
+  ```sh
+     git clone https://github.com/aupigit/whatsapp-link-genne.git
+  ```
+
 - Para instalar as dependencias
 
   ```sh
